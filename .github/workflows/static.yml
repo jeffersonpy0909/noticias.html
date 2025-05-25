@@ -1,25 +1,37 @@
 name: Update News
+
 on:
   schedule:
-    - cron: '0 * * * *'  # Se ejecuta cada hora
-  workflow_dispatch:     # Permite ejecución manual
+    - cron: '0 * * * *'  # Ejecuta cada hora
+  workflow_dispatch:     # Permite ejecución manual desde GitHub
+
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Install dependencies
-        run: pip install feedparser beautifulsoup4 requests yfinance
-      - name: Run script
-        run: noticias.py
-      - name: Commit changes
+
+      - name: Instalar dependencias
+        run: |
+          pip install feedparser beautifulsoup4 requests yfinance
+
+      - name: Ejecutar script Python
+        run: python noticias.py
+
+      - name: Asegurar archivo .nojekyll
+        run: touch .nojekyll
+
+      - name: Subir cambios si los hay
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add .
-          git commit -m "Automatic news update"
+          git diff --cached --quiet || git commit -m "Automatic news update"
           git push
