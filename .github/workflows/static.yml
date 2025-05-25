@@ -23,7 +23,7 @@ jobs:
           pip install feedparser beautifulsoup4 requests yfinance
 
       - name: Ejecutar script Python
-        run: python noticias.py
+        run: python script.py
 
       - name: Asegurar archivo .nojekyll
         run: touch .nojekyll
