@@ -18,11 +18,11 @@ ARCHIVO_SUSCRIPTORES = "suscriptores.json"  # Archivo para almacenar los suscrip
 CONFIG_EMAIL = {
     "servidor": "smtp.gmail.com",          # Servidor SMTP para enviar emails
     "puerto": 587,                         # Puerto del servidor SMTP
-    "usuario": "tucorreo@gmail.com",       # Email desde el que se enviarán notificaciones
-    "password": "tucontraseña"             # Contraseña del email
+    "usuario": "jefferson.meran99@gmail.com",       # Email desde el que se enviarán notificaciones
+    "password": "automatico"             # Contraseña del email
 }
 ARCHIVO_DATOS = "noticias.json"            # Archivo para almacenar los datos de noticias
-RUTA_HTML = "noticias.html"                # Ruta donde se generará el archivo HTML
+RUTA_HTML = "index.html"                # Ruta donde se generará el archivo HTML
 
 # Configuración de categorías
 CATEGORIAS = [
