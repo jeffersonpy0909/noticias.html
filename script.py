@@ -23,6 +23,9 @@ CONFIG_EMAIL = {
 }
 ARCHIVO_DATOS = "noticias.json"            # Archivo para almacenar los datos de noticias
 RUTA_HTML = "index.html"                # Ruta donde se generará el archivo HTML
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write("<html><body><h1>🗞️ Noticias actualizadas automáticamente</h1></body></html>")
+
 
 # Configuración de categorías
 CATEGORIAS = [
