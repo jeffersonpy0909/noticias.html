@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InfoDiversa - Todas las categorías</title>
+  
+    <style>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #e63946;
+      --accent-color: #457b9d;
+      --light-color: #f1faee;
+      --dark-color: #1d3557;
+      --food-color: #ff9e80;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .logo span {
+      margin-left: 0.5rem;
+    }
+
+    .search-container {
+      display: flex;
+      flex-grow: 1;
+      margin: 0 2rem;
+      max-width: 600px;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px 0 0 30px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0 1.5rem;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+    }
+
+    .subscribe-btn {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .subscribe-btn:hover {
+      background: var(--dark-color);
+      transform: translateY(-2px);
+    }
+
+    .ticker-container {
+      background: var(--dark-color);
+      color: white;
+      padding: 0.5rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 60s linear infinite;
+      padding-left: 100%;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      margin-right: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .positivo { color: #a5d6a7; }
+    .negativo { color: #ef9a9a; }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .contenedor-principal {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .categorias-menu {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 80px;
+      z-index: 999;
+    }
+
+    .categorias-lista {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .categoria-item {
+      background: var(--light-color);
+      color: var(--dark-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .categoria-item:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .categoria-seccion {
+      margin-bottom: 3rem;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .categoria-titulo {
+      color: var(--primary-color);
+      margin-top: 0;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .noticias-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .noticia {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .noticia:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .noticia-imagen {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .noticia-titulo {
+      color: var(--primary-color);
+      margin: 1rem 1rem 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .noticia-meta {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 1rem 1rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .noticia-descripcion {
+      margin: 0 1rem 1rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .noticia-enlace {
+      display: inline-block;
+      background: var(--secondary-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      margin: 0 1rem 1rem;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .noticia-enlace:hover {
+      background: var(--primary-color);
+    }
+
+    .galeria {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .galeria img {
+      height: 100px;
+      width: auto;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-actions {
+      margin-top: 1.5rem;
+      text-align: right;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--accent-color);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .logo {
+        margin-bottom: 1rem;
+      }
+
+      .search-container {
+        margin: 1rem 0;
+        width: 100%;
+      }
+
+      .noticias-container {
+        grid-template-columns: 1fr;
+      }
+
+      .categorias-menu {
+        top: 70px;
+      }
+    }
+    </style>
+    
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo" onclick="recargarPagina()">📰 <span>InfoDiversa</span></div>
+    <div class="search-container">
+      <input type="text" id="busqueda" class="search-bar" placeholder="Buscar en todas las categorías...">
+      <button class="search-button" onclick="buscarNoticias()">🔍</button>
+    </div>
+    <button class="subscribe-btn" onclick="mostrarModalSuscripcion()">Suscribirse</button>
+  </nav>
+
+  <div class="ticker-container">
+    <div class="ticker-content">
+      <span class="ticker-item positivo">📊 S&P 500: 5,804.16 pts (+33.44 | +0.58%)</span>
+<span class="ticker-item positivo">💻 NASDAQ: 18,740.82 pts (+133.17 | +0.72%)</span>
+<span class="ticker-item positivo">🏭 DOW JONES: 41,612.99 pts (+217.93 | +0.53%)</span>
+<span class="ticker-item negativo">🇪🇸 IBEX 35: 14,081.30 pts (-205.60 | -1.44%)</span>
+<span class="ticker-item negativo">₿ BITCOIN: $107,482.38 (-307.56 | -0.29%)</span>
+<span class="ticker-item negativo">Ξ ETHEREUM: $2,490.93 (-39.20 | -1.55%)</span>
+<span class="ticker-item ">📉 Tendencia: bajista (S&P 500 -2.70% 5d)</span>
+
+    </div>
+  </div>
+
+  <div class="contenedor-principal">
+    <div class="categorias-menu">
+      <div class="categorias-lista">
+        <a href="#tecnologia" class="categoria-item">Tecnología</a><a href="#programacion" class="categoria-item">Programación</a><a href="#inteligencia-artificial" class="categoria-item">Inteligencia Artificial</a><a href="#recetas-de-comida" class="categoria-item">Recetas de comida</a><a href="#noticias" class="categoria-item">Noticias</a><a href="#ciencia" class="categoria-item">Ciencia</a><a href="#gadgets" class="categoria-item">Gadgets</a><a href="#empleos" class="categoria-item">Empleos</a>
+      </div>
+    </div>
+    
+    <div id="mensaje-busqueda" style="display: none; background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;"></div>
+    
+    
+        <section id="tecnologia" class="categoria-seccion">
+            <h2 class="categoria-titulo">Tecnología</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">7 películas que cambiaron para siempre sus respectivos géneros</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Hipertextual</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 16:00:00 +0000</span>
+                </div>
+                <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Peliculas-que-cambiaron-la-historia-del-cine.jpg?fit=1200%2C960&quality=70&strip=all&ssl=1" alt="7 películas que cambiaron para siempre sus respectivos géneros" class="noticia-imagen">
+                <div class="galeria"><img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Peliculas-que-cambiaron-la-historia-del-cine.jpg?fit=2000%2C1600&quality=70&strip=all&ssl=1" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion"><figure><img alt="" class="attachment-rss-image-size size-rss-image-size wp-post-image" height="819" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Peliculas-que-cambiaron-la-historia-del-cine.jpg?fit=1024%2C819&amp;quality=70&amp;strip=all&amp;ssl=1" width="1024" /></figure>
+<p>Hasta 1960, el público norteamericano podía entrar en una función de cine después del comienzo de la proyección. Algo que provocaba incomodidad y tropiezos, además de fomentar la costumbre de la mayoría de las veces, perder los primeros minutos de la historia. Así que cuando el cartel publicitario de Psicosis de Alfred Hitchcock exigió llegar [&#8230;]</p>
+<p>Seguir leyendo: <a href="https://hipertextual.com/2025/05/7-peliculas-que-cambiaron-para-siempre-sus-respectivos-generos">7 películas que cambiaron para siempre sus respectivos géneros</a></p></div>
+                <a href="https://hipertextual.com/2025/05/7-peliculas-que-cambiaron-para-siempre-sus-respectivos-generos" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Los obstáculos que debe superar ‘The Last of Us’ de aquí en adelante</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Hipertextual</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 13:00:00 +0000</span>
+                </div>
+                <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/04/Diseno-sin-titulo-237.jpg?fit=1200%2C675&quality=70&strip=all&ssl=1" alt="Los obstáculos que debe superar ‘The Last of Us’ de aquí en adelante" class="noticia-imagen">
+                <div class="galeria"><img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/04/Diseno-sin-titulo-237.jpg?fit=1920%2C1080&quality=70&strip=all&ssl=1" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion"><figure><img alt="The Last of Us" class="attachment-rss-image-size size-rss-image-size wp-post-image" height="576" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/04/Diseno-sin-titulo-237.jpg?fit=1024%2C576&amp;quality=70&amp;strip=all&amp;ssl=1" width="1024" /></figure>
+<p>The Last of Us atraviesa momentos complicados. Luego de una primera temporada que conquistó a los fanáticos y a la crítica, la segunda entrega de la producción, enfrentó varios problemas. El más evidente, que la adaptación del clásico de Naughty Dog, debía avanzar por el terreno complicado de cambiar de manera sustancial el material original. [&#8230;]</p>
+<p>Seguir leyendo: <a href="https://hipertextual.com/2025/05/los-obstaculos-que-debe-superar-the-last-of-us-de-aqui-en-adelante">Los obstáculos que debe superar ‘The Last of Us’ de aquí en adelante</a></p></div>
+                <a href="https://hipertextual.com/2025/05/los-obstaculos-que-debe-superar-the-last-of-us-de-aqui-en-adelante" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">La historia de la misteriosa mangaka Ryo Tatsuki y su obra “profética” que anticipa un gran desastre para 2025</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Hipertextual</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 10:00:00 +0000</span>
+                </div>
+                <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Ryo-Tatsuki.jpg?fit=1200%2C675&quality=70&strip=all&ssl=1" alt="La historia de la misteriosa mangaka Ryo Tatsuki y su obra “profética” que anticipa un gran desastre para 2025" class="noticia-imagen">
+                <div class="galeria"><img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Ryo-Tatsuki.jpg?fit=1600%2C900&quality=70&strip=all&ssl=1" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion"><figure><img alt="" class="attachment-rss-image-size size-rss-image-size wp-post-image" height="576" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Ryo-Tatsuki.jpg?fit=1024%2C576&amp;quality=70&amp;strip=all&amp;ssl=1" width="1024" /></figure>
+<p>Durante las últimas semanas, el nombre de la mangaka Ryo Tatsuki, se convirtió en un extraño fenómeno de Internet. Todo debido a que su manga The Future I Saw, autopublicado en 1999, contiene una serie de predicciones que parecen haberse cumplido en la última década. Más alarmante todavía: la obra indica otro anuncio terrorífico, que [&#8230;]</p>
+<p>Seguir leyendo: <a href="https://hipertextual.com/2025/05/la-historia-de-la-misteriosa-mangaka-ryo-tatsuki-y-su-obra-profetica-que-anticipa-un-gran-desastre-para-2025">La historia de la misteriosa mangaka Ryo Tatsuki y su obra “profética” que anticipa un gran desastre para 2025</a></p></div>
+                <a href="https://hipertextual.com/2025/05/la-historia-de-la-misteriosa-mangaka-ryo-tatsuki-y-su-obra-profetica-que-anticipa-un-gran-desastre-para-2025" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">3 razones para ver ‘La calle del terror: La reina del baile’, el nuevo éxito Netflix</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Hipertextual</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 08:00:00 +0000</span>
+                </div>
+                <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Fear-Street-Prom-Queen-Hipertextual.jpg?fit=1200%2C653&quality=70&strip=all&ssl=1" alt="3 razones para ver ‘La calle del terror: La reina del baile’, el nuevo éxito Netflix" class="noticia-imagen">
+                <div class="galeria"><img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Fear-Street-Prom-Queen-Hipertextual.jpg?fit=1765%2C960&quality=70&strip=all&ssl=1" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion"><figure><img alt="" class="attachment-rss-image-size size-rss-image-size wp-post-image" height="557" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Fear-Street-Prom-Queen-Hipertextual.jpg?fit=1024%2C557&amp;quality=70&amp;strip=all&amp;ssl=1" width="1024" /></figure>
+<p>La calle del terror: La reina del baile (2025), es un homenaje interesante, salvaje y sangriento al slasher. Y de eso no queda duda, desde su primera escena. Pero esta adaptación del libro homónimo de R.L. Stine de 1992, explora también en lo que ha hecho a la obra del escritor tan querida. A saber: [&#8230;]</p>
+<p>Seguir leyendo: <a href="https://hipertextual.com/2025/05/3-razones-para-ver-la-calle-del-terror-la-reina-del-baile-el-nuevo-exito-netflix">3 razones para ver ‘La calle del terror: La reina del baile’, el nuevo éxito Netflix</a></p></div>
+                <a href="https://hipertextual.com/2025/05/3-razones-para-ver-la-calle-del-terror-la-reina-del-baile-el-nuevo-exito-netflix" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">OpenAI actualiza Operator, el poderoso agente de IA que navega la web por ti</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Hipertextual</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 23:22:25 +0000</span>
+                </div>
+                <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Product_Blog_-_Wayfinding_Static.jpg?fit=1200%2C675&quality=70&strip=all&ssl=1" alt="OpenAI actualiza Operator, el poderoso agente de IA que navega la web por ti" class="noticia-imagen">
+                <div class="galeria"><img src="https://imgs.hipertextual.com/wp-content/uploads/2025/05/Product_Blog_-_Wayfinding_Static.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion"><figure><img alt="Operator agente OpenAI" class="attachment-rss-image-size size-rss-image-size wp-post-image" height="576" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2025/05/Product_Blog_-_Wayfinding_Static.jpg?fit=1024%2C576&amp;quality=70&amp;strip=all&amp;ssl=1" width="1024" /></figure>
+<p>OpenAI ha actualizado su agente de IA que puede navegar en la web por ti. La compañía anunció que Operator utilizará o3, el poderoso modelo de razonamiento que ha sido diseñado para realizar investigaciones exhaustivas en internet. Anteriormente, el agente estaba basado en una versión personalizada de GPT-4o. "Estamos reemplazando el modelo existente basado en [&#8230;]</p>
+<p>Seguir leyendo: <a href="https://hipertextual.com/2025/05/openai-operator-actualizacion-modelo-o3-agente-ia">OpenAI actualiza Operator, el poderoso agente de IA que navega la web por ti</a></p></div>
+                <a href="https://hipertextual.com/2025/05/openai-operator-actualizacion-modelo-o3-agente-ia" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="programacion" class="categoria-seccion">
+            <h2 class="categoria-titulo">Programación</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">What Zen And The Art Of Motorcycle Maintenance Can Teach Us About Web Design</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Smashing Magazine</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 11:00:00 GMT</span>
+                </div>
+                <img src="https://files.smashing.media/partners/smashing/christine-vallaure-free.png" alt="What Zen And The Art Of Motorcycle Maintenance Can Teach Us About Web Design" class="noticia-imagen">
+                <div class="galeria"><img src="https://files.smashing.media/partners/smashing/dark.png" alt="Imagen 1" loading="lazy"><img src="https://files.smashing.media/partners/surveyjs/SurveyJS-feb.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion">Road-tripping along the line between engineering and spirituality, Robert M. Pirsig’s musings on the arts, sciences, and Quality ring as true now as they ever have.</div>
+                <a href="https://smashingmagazine.com/2025/05/what-zen-art-motorcycle-maintenance-teach-web-design/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Smashing Animations Part 3: SMIL’s Not Dead Baby, SMIL’s Not Dead</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Smashing Magazine</span>
+                    <span class="noticia-fecha">Wed, 21 May 2025 08:00:00 GMT</span>
+                </div>
+                <img src="https://files.smashing.media/partners/surveyjs/SurveyJS-feb.png" alt="Smashing Animations Part 3: SMIL’s Not Dead Baby, SMIL’s Not Dead" class="noticia-imagen">
+                <div class="galeria"><img src="https://files.smashing.media/partners/smashing/susan-weinschenk-uxstrategy.png" alt="Imagen 1" loading="lazy"><img src="https://files.smashing.media/partners/smashing/stephanie-eckles.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion">While there are plenty of ways that CSS animations can bring designs to life, adding simple SMIL (Synchronized Multimedia Integration Language) animations in SVG can help them do much more. Andy Clarke explains where SMIL animations in SVG take over where CSS leaves off.</div>
+                <a href="https://smashingmagazine.com/2025/05/smashing-animations-part-3-smil-not-dead/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Design System In 90 Days</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Smashing Magazine</span>
+                    <span class="noticia-fecha">Mon, 19 May 2025 10:00:00 GMT</span>
+                </div>
+                <img src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://files.smashing.media/articles/mailing-91-design-system-90-days/1-mailing-91-design-system-90-days.jpg" alt="Design System In 90 Days" class="noticia-imagen">
+                <div class="galeria"><img src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://files.smashing.media/articles/mailing-91-design-system-90-days/2-mailing-91-design-system-90-days.jpg" alt="Imagen 1" loading="lazy"><img src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://files.smashing.media/articles/mailing-91-design-system-90-days/3-mailing-91-design-system-90-days.jpg" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion">Helpful PDF worksheets and tools to get the design system effort up and running — and adopted! Kindly powered by <a href="https://measure-ux.com">How To Measure UX and Design Impact</a>, a friendly course on how to show the impact of your incredible UX work on business.</div>
+                <a href="https://smashingmagazine.com/2025/05/design-system-in-90-days/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Building A Practical UX Strategy Framework</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Smashing Magazine</span>
+                    <span class="noticia-fecha">Fri, 16 May 2025 11:00:00 GMT</span>
+                </div>
+                <img src="https://files.smashing.media/partners/smashing/dark.png" alt="Building A Practical UX Strategy Framework" class="noticia-imagen">
+                <div class="galeria"><img src="https://files.smashing.media/partners/smashing/stephanie-walter.png" alt="Imagen 1" loading="lazy"><img src="https://files.smashing.media/partners/smashing/vitaly-friedman-uxstrategy.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion">Learn how to create and implement a UX strategy framework that shapes work and drives real business value.</div>
+                <a href="https://smashingmagazine.com/2025/05/building-practical-ux-strategy-framework/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Fewer Ideas: An Unconventional Approach To Creativity</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Smashing Magazine</span>
+                    <span class="noticia-fecha">Thu, 15 May 2025 10:00:00 GMT</span>
+                </div>
+                <img src="https://files.smashing.media/partners/surveyjs/SurveyJS-feb.png" alt="Fewer Ideas: An Unconventional Approach To Creativity" class="noticia-imagen">
+                <div class="galeria"><img src="https://files.smashing.media/partners/bolt/bolt.jpeg" alt="Imagen 1" loading="lazy"><img src="https://files.smashing.media/partners/smashing/stephanie-walter.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion">Remember that last team brainstorming session where you were supposed to generate a long list of brilliant ideas? How many of those ideas actually stuck? Did leadership act on any of those ideas? In this article, Eric Olive challenges the value of exercises like brainstorming and explores more effective methods for sparking creativity to improve design and enhance the user’s experience.</div>
+                <a href="https://smashingmagazine.com/2025/05/fewer-ideas-unconventional-approach-creativity/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="inteligencia-artificial" class="categoria-seccion">
+            <h2 class="categoria-titulo">Inteligencia Artificial</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.19</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2025-03-13T09:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.19" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.19 has been released! Highlights of this release include changes to the C++ API in LiteRT, bfloat16 support for tflite casting, discontinue of releasing libtensorflow packages. Learn more by reading the <a href="https://github.com/tensorflow/tensorflow/blob/r2.19/RELEASE.md" target="_blank">full release notes</a>.</p>
+
+<p><b>Note:</b> Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2><span style="font-size: x-large;">TensorFlow Core</span></h2>
+
+<h3><span style="font-size: large;">LiteRT</span></h3>
+
+<p>The public constants <code>tflite::Interpreter:kTensorsReservedCapacity</code> and <code>tflite::Interpreter:kTensorsCapacityHeadroom</code> are now const references, rather than constexpr compile-time constants. (This is to enable better API compatibility for TFLite in Play services while preserving the implementation flexibility to change the values of these constants in the future.)
+
+<h3><span style="font-size: large;">TF-Lite</span></h3>
+
+<p>tfl.Cast op is now supporting bfloat16 in the runtime kernel. <code>tf.lite.Interpreter</code> gives a deprecation warning redirecting to its new location at <code>ai_edge_litert.interpreter</code>, as the API <code>tf.lite.Interpreter</code> will be deleted in TF 2.20. See the <a href="https://ai.google.dev/edge/litert/migration" target="_blank">migration guide</a> for details.</p>
+
+<h3><span style="font-size: large;">Libtensorflow</span></h3>
+
+<p>We have stopped publishing libtensorflow packages but it can still be unpacked from the PyPI package.</p></div>
+                <a href="https://blog.tensorflow.org/2025/03/whats-new-in-tensorflow-2-19.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Introducing Wake Vision: A High-Quality, Large-Scale Dataset for TinyML Computer Vision Applications</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-12-05T09:00:00.000-08:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/w1200-h630-p-k-no-nu/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" alt="Introducing Wake Vision: A High-Quality, Large-Scale Dataset for TinyML Computer Vision Applications" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" style="display: none;" />
+
+<em>Posted by Colby Banbury, Emil Njor, Andrea Mattia Garavagno, Vijay Janapa Reddi – Harvard University</em>
+
+<a href=""><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXMzZM-8kD4Hv3XAwSxdZl1k5jAUCzDkfKdog5XWfPE8l-cfcDLmAPxhG8nd_ZbuGeyeulW9LsbSVsSkAQf3i_-DV6o71xrb57ZfVQ6cUClvMB-h1_rXjVIM4FK9V2GCRkWsIofgZ3hdaoJiYjRyzk-Mrf31-FEPJ6C4VhCoAjiCttPP1Sja53g-Tzz9Y/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-v2.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p><b>TinyML</b> is an exciting frontier in machine learning, enabling models to run on extremely low-power devices such as microcontrollers and edge devices. However, the growth of this field has been stifled by a lack of tailored large and high-quality datasets. That's where <a href="https://wakevision.ai/" target="_blank">Wake Vision</a> comes in—a new dataset designed to accelerate research and development in TinyML.</p>
+
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCy1LV1L66F-joAgx4igQMAX7g6jMDQsgd6vVd3pWLdSS9Cn96ZgP5aNumzwV1n8HP8JEvnjy-ra053wE2yIc0Rxped3pJfXkKt6XExOKqiVpzMoZqosS25KOpEpdiY4Un8lx_4DjdC6UIiTrjB1vIcWkCJv5NQRuKO0BH0E_rWbOhkJ03krsoQPmLNwA/s718/Screenshot%202024-12-02%20at%205.16.08%E2%80%AFPM.png" style="margin-left: 1em; margin-right: 1em;"><img alt="A vibrant, abstract representation of a human figure is formed by swirling lines and dots of rainbow colors. A large, bright blue eye is centrally located on the figure's torso." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCy1LV1L66F-joAgx4igQMAX7g6jMDQsgd6vVd3pWLdSS9Cn96ZgP5aNumzwV1n8HP8JEvnjy-ra053wE2yIc0Rxped3pJfXkKt6XExOKqiVpzMoZqosS25KOpEpdiY4Un8lx_4DjdC6UIiTrjB1vIcWkCJv5NQRuKO0BH0E_rWbOhkJ03krsoQPmLNwA/s16000/Screenshot%202024-12-02%20at%205.16.08%E2%80%AFPM.png" /></a></div>
+
+<h3>Why TinyML Needs Better Data</h3>
+
+<p>The development of TinyML requires compact and efficient models, often only a few hundred kilobytes in size. The applications targeted by standard machine learning datasets, like ImageNet, are not well-suited for these highly constrained models.</p>
+
+<p>Existing datasets for TinyML, like <a href="https://arxiv.org/abs/1906.05721" target="_blank">Visual Wake Words (VWW)</a>, have laid the groundwork for progress in the field. However, their smaller size and inherent limitations pose challenges for training production-grade models. Wake Vision builds upon this foundation by providing a large, diverse, and high-quality dataset specifically tailored for person detection—the cornerstone vision task for TinyML.</p>
+
+
+<h3>What Makes Wake Vision Different?</h3>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIiZ0YZ6zmdEIbuzsJVyRVinjmWXMr4_PJ_hSPnUvORKH0noke506j_GK6wUB4f_Zjk1Uwxnkew_EJMuHReOpB-mXsowZXaWCfz2-avSeiNRMUspvvVGP8uuyUPSmB4VWtdruDPpBTHlGIC8OGkr-U-pikoAt7jPqohj3-TJtGIy1FKR-sDe5ECTGFOIY/s1600/Screenshot%202024-12-02%20at%202.35.59%E2%80%AFPM.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="A table displaying the number of images used for training, validation, and testing different datasets, including Wake Vision, Visual Wake Words, CIFAR-100, and PASCAL VOC 2012. The table shows the total number of images and the number of person images in each dataset split." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIiZ0YZ6zmdEIbuzsJVyRVinjmWXMr4_PJ_hSPnUvORKH0noke506j_GK6wUB4f_Zjk1Uwxnkew_EJMuHReOpB-mXsowZXaWCfz2-avSeiNRMUspvvVGP8uuyUPSmB4VWtdruDPpBTHlGIC8OGkr-U-pikoAt7jPqohj3-TJtGIy1FKR-sDe5ECTGFOIY/s1600/Screenshot%202024-12-02%20at%202.35.59%E2%80%AFPM.png" /></a></div>
+
+
+<p><a href="https://wakevision.ai/" target="_blank">Wake Vision</a> is a new, large-scale dataset with roughly <b>6 million images</b>, almost <b>100 times larger</b> than VWW, the previous state-of-the-art dataset for person detection in TinyML. 
+  The dataset provides two distinct training sets:</p>
+<ul>
+<li><b>Wake Vision (Large):</b> Prioritizes dataset size.</li>
+<li><b>Wake Vision (Quality):</b> Prioritizes label quality.</li>
+</ul>
+
+<p>Wake Vision's comprehensive filtering and labeling process significantly enhances the dataset's quality.</p>
+
+
+<h3>Why Data Quality Matters for TinyML Models</h3>
+
+<p>In traditional overparameterized models, it is widely believed that data quantity matters more than data quality, as an overparameterized model can adapt to errors in the training data. But according to the image below, TinyML tells a different story:</p>
+
+
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"><tbody><tr><td style="text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2yOthWHyZ2ypKziH9FQNwHJK4i3gvE7uqhwyzSANsKmoMRxJRLSJwet9XXdPbDqXTfedaY16N3yYMz0gsdLhCDdpQGl_JcXGmg_F88TAJ8Y9v76avonwwDNUzVCZh3wd3j5bfLVG528kT9kWn2bqq81Wg61kDYcCR4IjLDROo8sTgCkQWfDiBVhzQNj0/s1600/image6.png" style="display: block; margin-left: auto; margin-right: auto; padding: 1em 0px; text-align: center;"><img alt="Five line graphs illustrate the Wake Vision Test Score with varying percentages of training data quality used, comparing models by parameter count (78K, 309K, 1.2M, 4.9M, and 11M) and  error rate (7%, 15%, and 30%)." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2yOthWHyZ2ypKziH9FQNwHJK4i3gvE7uqhwyzSANsKmoMRxJRLSJwet9XXdPbDqXTfedaY16N3yYMz0gsdLhCDdpQGl_JcXGmg_F88TAJ8Y9v76avonwwDNUzVCZh3wd3j5bfLVG528kT9kWn2bqq81Wg61kDYcCR4IjLDROo8sTgCkQWfDiBVhzQNj0/s1600/image6.png" /></a></td></tr></tbody></table>
+
+<p>The figure above shows that <b>high-quality labels</b> (less error) are more beneficial for under-parameterized models than simply having more data. Larger, error-prone datasets can still be valuable when paired with <b>fine-grained techniques</b>.</p>
+
+<p>By providing two versions of the training set, Wake Vision enables researchers to explore the balance between dataset size and quality effectively.</p>
+
+
+<h3>Real-World Testing: Wake Vision's Fine-Grained Benchmarks</h3>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEA0BqcN0Jw-SSy_dp_JNPr84oLJZF0T6ceGofGbCYmYsY7fjeJmk7LZ7JYJM_NOzoojuQbFADoTVc_8XyzAtSl_XB1yNNIOFlLVdE4QJ94WHNOx5tH-_0o7zyj151eUvhR_NAzeqqDf82sC2SNpMUfsfXj3Dnd-Q5Gs_nzGTxRiuR_6bVs6orbMtKEEU/s1600/Screenshot%202024-12-02%20at%202.47.48%E2%80%AFPM.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="Five images are shown, each with text underneath describing the content as Perceived Older Person, Near Person, Bright Image, Perceived Female Person, and Depicted Person." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEA0BqcN0Jw-SSy_dp_JNPr84oLJZF0T6ceGofGbCYmYsY7fjeJmk7LZ7JYJM_NOzoojuQbFADoTVc_8XyzAtSl_XB1yNNIOFlLVdE4QJ94WHNOx5tH-_0o7zyj151eUvhR_NAzeqqDf82sC2SNpMUfsfXj3Dnd-Q5Gs_nzGTxRiuR_6bVs6orbMtKEEU/s1600/Screenshot%202024-12-02%20at%202.47.48%E2%80%AFPM.png" /></a></div>
+
+<p>Unlike many open-source datasets, Wake Vision offers <b>fine-grained benchmarks</b> and detailed tests for real-world applications like those shown in the above figure. These enable the evaluation of model performance in real-world scenarios, such as:</p>
+<ul>
+<li><b>Distance:</b> How well the model detects people at various distances from the camera.</li>
+<li><b>Lighting Conditions:</b> Performance in well-lit vs. poorly-lit environments.</li>
+<li><b>Depictions:</b> Handling of varied representations of people (e.g., drawings, sculptures).</li>
+<li><b>Perceived Gender and Age:</b> Detecting biases across genders and age groups.</li>
+</ul>
+
+<p>These benchmarks give researchers a nuanced understanding of model performance in specific, real-world contexts and help identify potential biases and limitations early in the design phase.</p>
+
+<h3>Key Performance Gains With Wake Vision</h3>
+
+<p>The performance gains achieved using Wake Vision are impressive:</p>
+<ul>
+<li><b>Up to a 6.6% increase in accuracy</b> over the established VWW dataset.</li>
+<li><b>Error rate reduction from 7.8% to 2.2%</b> with manual label validation on evaluation sets.</li>
+<li><b>Robustness across various real-world conditions</b>, from lighting to perceived age and gender.</li>
+</ul>
+
+<p>Furthermore, combining the two Wake Vision training sets, using the larger set for pre-training and the quality set for fine-tuning, yields the best results, highlighting the value of both datasets when used in sophisticated training pipelines.</p>
+
+<h3>Wake Vision Leaderboard: Track and Submit New Top-Performing Models</h3>
+
+<p>The Wake Vision website features a <a href="https://wakevision.ai/#leaderboard" target="_blank">Leaderboard</a>, providing a dedicated platform to assess and compare the performance of models trained on the Wake Vision dataset.</p>
+
+<p>The leaderboard enables a clear and detailed view of how models perform under various conditions, with performance metrics like accuracy, error rates, and robustness across diverse real-world scenarios. It’s an excellent resource for both seasoned researchers and newcomers looking to improve and validate their approaches.</p>
+
+<p>Explore the leaderboard to see the current rankings, learn from high-performing models, and submit your own to contribute to advancing the state of the art in TinyML person detection.</p>
+
+
+<h3>Making Wake Vision Easy to Access</h3>
+
+<p>Wake Vision is available through popular dataset services such as:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/datasets/catalog/wake_vision" target="_blank">TensorFlow Datasets (TFDS)</a></li>
+<li><a href="https://huggingface.co/datasets/Harvard-Edge/Wake-Vision" target="_blank">Hugging Face Datasets</a></li>
+<li><a href="https://edgeai.modelnova.ai/" target="_blank">Edge AI Labs</a></li>
+</ul>
+
+<p>With its <b>permissive license</b> (<a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank">CC-BY 4.0</a>), researchers and practitioners can freely use and adapt Wake Vision for their TinyML projects.</p>
+
+<h2>Get Started with Wake Vision Today!</h2>
+<p>The Wake Vision team has made the <b>dataset, code, and benchmarks</b> publicly available to accelerate TinyML research and enable the development of better, more reliable person detection models for ultra-low-power devices.</p>
+
+<p>To learn more and access the dataset, visit <a href="https://wakevision.ai/" target="_blank">Wake Vision’s website</a>, where you can also check out a leaderboard of top-performing models on the Wake Vision dataset - and see if you can create better performing models!</p></div>
+                <a href="https://blog.tensorflow.org/2024/12/introducing-wake-vision-new-dataset-for-person-detection-in-tinyml.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">MLSysBook.AI: Principles and Practices of Machine Learning Systems Engineering</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-11-19T09:00:00.000-08:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/w1200-h630-p-k-no-nu/social-Practices-of-ML-systems-engineering.png" alt="MLSysBook.AI: Principles and Practices of Machine Learning Systems Engineering" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/s1600/social-Practices-of-ML-systems-engineering.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/s1600/social-Practices-of-ML-systems-engineering.png" style="display: none;" />
+
+<em>Posted by Jason Jabbour, Kai Kleinbard and <a href="http://scholar.harvard.edu/vijay-janapa-reddi/" target="_blank">Vijay Janapa Reddi</a> (Harvard University)</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWzldLNhl1RyM2-V8XdUtlf4P5__oJdAaN9GxyGvic4K8RCtOH8KpixLS-oQF5ZB5zn89d3QX-lX_6rn2eqeCJ-evLJKfo7unJRL8sGFodqswVywDYmc9sRTkf-Bo3ToOgECA7nElSXroZBsNFh_o2chlCuipwlWAwyJ4gLvxiosMQcU-8iRpf5jaUuxk/s1600/header-Practices-of-ML-systems-engineering.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWzldLNhl1RyM2-V8XdUtlf4P5__oJdAaN9GxyGvic4K8RCtOH8KpixLS-oQF5ZB5zn89d3QX-lX_6rn2eqeCJ-evLJKfo7unJRL8sGFodqswVywDYmc9sRTkf-Bo3ToOgECA7nElSXroZBsNFh_o2chlCuipwlWAwyJ4gLvxiosMQcU-8iRpf5jaUuxk/s1600/header-Practices-of-ML-systems-engineering.png" /></a>
+
+<a name="more"></a><p></p>
+
+<h2>Everyone wants to do the modeling work, but no one wants to do the engineering.</h2>
+
+<p><i>If ML developers are like astronauts exploring new frontiers, ML systems engineers are the rocket scientists designing and building the engines that take them there.</i></p>
+
+<h3>Introduction</h3>
+
+<p>"Everyone wants to do modeling, but no one wants to do the engineering," highlights a stark reality in the machine learning (ML) world: the allure of building sophisticated models often overshadows the critical task of engineering them into robust, scalable, and efficient systems.</p>
+  
+<p>The reality is that ML and systems are inextricably linked. Models, no matter how innovative, are computationally demanding and require substantial resources—with the rise of generative AI and increasingly complex models, understanding how ML infrastructure scales becomes even more critical. Ignoring the system's limitations during model development is a recipe for disaster.</p>
+  
+<p>Unfortunately, educational resources on the systems side of machine learning are lacking. There are plenty of textbooks and materials on <a href="https://www.tensorflow.org/resources/learn-ml#books" target="_blank">deep learning theory and concepts</a>. However, we truly need more resources on the infrastructure and systems side of machine learning. Critical questions—such as how to optimize models for specific hardware, deploy them at scale, and ensure system efficiency and reliability—are still not adequately understood by ML practitioners. This lack of understanding is not due to disinterest but rather a gap in available knowledge.</p> 
+  
+<p>One significant resource addressing this gap is <a href="http://MLSysBook.ai" target="_blank">MLSysBook.ai</a>. This blog post explores key ML systems engineering concepts from MLSysBook.ai and maps them to the TensorFlow ecosystem to provide practical insights for building efficient ML systems.</p> 
+
+
+<h3>The Connection Between Machine Learning and Systems</h3>
+
+<p>Many think machine learning is solely about extracting patterns and insights from data. While this is fundamental, it’s only part of the story. Training and deploying these "deep" neural network models often necessitates vast computational resources, from powerful GPUs and TPUs to massive datasets and distributed computing clusters.</p> 
+
+<p>Consider the recent wave of large language models (LLMs) that have pushed the boundaries of natural language processing. These models highlight the immense computational challenges in training and deploying large-scale machine learning models. Without carefully considering the underlying system, training times can stretch from days to weeks, inference can become sluggish, and deployment costs can skyrocket.</p> 
+
+<p>Building a successful machine-learning solution involves the entire system, not just the model. This is where ML systems engineering takes the reins, allowing you to optimize model architecture, hardware selection, and deployment strategies, ensuring that your models are not only powerful in theory but also efficient and scalable.</p> 
+
+<p>To draw an analogy, if developing algorithms is like being an astronaut exploring the vast unknown of space, then ML systems engineering is similar to the work of rocket scientists building the engines that make those journeys possible. Without the precise engineering of rocket scientists, even the most adventurous astronauts would remain earthbound.</p> 
+
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsH_zM77JldWBIbYLEZWoocfBzqhBA0iul9s9ZUHsAYmSYoUIEN6aWoUFe3woWvHLgFRNsUiUkKGWcYS4nDjBqiMI3o-DMgIxmLIH-wURGkvfwox5NF5oDtczINYqcisbOUJhUDGuw2KtZAly-wiMS7_nHLy2FkJCtTXyT3hcmPExZnxk1Hgz6vwwvaYs/s1600/MLSysbook-AI-cover-image.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="An abstract circular design resembling a network or neural pathways consisting of interconnected nodes and lines in shades of blue, pink, and gray, against a white background" border="0" height="640" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsH_zM77JldWBIbYLEZWoocfBzqhBA0iul9s9ZUHsAYmSYoUIEN6aWoUFe3woWvHLgFRNsUiUkKGWcYS4nDjBqiMI3o-DMgIxmLIH-wURGkvfwox5NF5oDtczINYqcisbOUJhUDGuw2KtZAly-wiMS7_nHLy2FkJCtTXyT3hcmPExZnxk1Hgz6vwwvaYs/s1600/MLSysbook-AI-cover-image.png" width="100%" /></a></div>
+
+
+
+<h3>Bridging the Gap: MLSysBook.ai and System-Level Thinking</h3>
+
+<p>One important new resource this blog post offers for insights into ML systems engineering is an open-source "textbook" — <a href="http://MLSysBook.ai" target="_blank">MLSysBook.ai</a> —developed initially as part of Harvard University's <a href="https://sites.google.com/g.harvard.edu/cs249-tinyml-2023" target="_blank">CS249r Tiny Machine Learning</a> course and <a href="https://www.edx.org/certificates/professional-certificate/harvardx-tiny-machine-learning" target="_blank">HarvardX's TinyML</a> online series. This project, which has expanded into an open, collaborative initiative, dives deep into the end-to-end ML lifecycle.</p>
+  
+<p>It highlights that the principles governing ML systems, whether designed for tiny embedded devices or large data centers, are fundamentally similar. For instance, while tiny machines might employ INT8 for numeric operations to save resources, larger systems often utilize FP16 for higher precision—the fundamental concepts, such as quantization, span across both scenarios.</p>
+
+<p>Key concepts covered in this resource include:</p>
+
+<ul><ol>
+<li><b>Data Engineering:</b> Setting the foundation by efficiently collecting, preprocessing, and managing data to prepare it for the machine learning pipeline.</li>
+<li><b>Model Development:</b> Crafting and refining machine learning models to meet specific tasks and performance goals.</li>
+<li><b>Optimization:</b> Fine-tuning model performance and efficiency, ensuring effective use of hardware and resources within the system.</li>
+<li><b>Deployment:</b> Transitioning models from development to real-world production environments while scaling and adapting them to existing infrastructure.</li>
+<li><b>Monitoring and Maintenance:</b> Continuously tracking system health and performance to maintain reliability, address issues, and adapt to evolving data and requirements.</li>
+</ol></ul>
+
+<p>In an efficient ML system, data engineering lays the groundwork by preparing and organizing raw data, which is essential for any machine learning process. This ensures data can be transformed into actionable insights during model development, where machine learning models are created and refined for specific tasks. Following development, optimization becomes critical for enhancing model performance and efficiency, ensuring that models are tuned to run effectively on the designated hardware and within the system's constraints.</p>
+
+<p>The seamless integration of these steps then extends into the deployment phase, where models are brought into real-world production environments. Here, they must be scaled and adapted to function effectively within existing infrastructure, highlighting the importance of robust ML systems engineering. However, the lifecycle of an ML system continues after deployment; continuous monitoring and maintenance are vital. This ongoing process ensures that ML systems remain healthy, reliable and perform optimally over time, adapting to new data and requirements as they arise.</p>
+
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"><tbody><tr><td style="text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikJkY7JpFbxDQ_j0CRSad_aP9CJHu9a9NxEq6eVK50_tcdJLum-gBeWKd1bUTVf8e9yk6zsIgleXvX8j2nQBcY7WVrWe7cutfuiRHAh3fODXrv-j4ye-FnGkGs5SQqZyojTbhQtNqkyKHwkksLVtgh-Mspfzj1PSqN71ULNhdiQ_qXj_F4rpVzHvqtFQA/s1600/image1.png" style="display: block; margin-left: auto; margin-right: auto; padding: 1em 0px; text-align: center;"><img alt="A flowchart diagrams the dependencies between different machine learning concepts, tools, and systems.  Beige boxes represent concepts like 'Data Engineering' and tools like 'TensorFlow Data', while blue boxes indicate higher-level systems like 'ML Systems Engineering Principles' and 'Efficient ML Systems'.  Arrows and dotted lines illustrate the relationships and workflow between these elements." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikJkY7JpFbxDQ_j0CRSad_aP9CJHu9a9NxEq6eVK50_tcdJLum-gBeWKd1bUTVf8e9yk6zsIgleXvX8j2nQBcY7WVrWe7cutfuiRHAh3fODXrv-j4ye-FnGkGs5SQqZyojTbhQtNqkyKHwkksLVtgh-Mspfzj1PSqN71ULNhdiQ_qXj_F4rpVzHvqtFQA/s1600/image1.png" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="text-align: start;"><i>A mapping of MLSysBook.AI's core ML systems engineering concepts to the TensorFlow ecosystem, illustrating how specific TensorFlow tools support each stage of the machine learning lifecycle, ultimately contributing to the creation of efficient ML systems.</i></span></td></tr></tbody></table>
+
+<h3>SocratiQ: An Interactive AI-Powered Generative Learning Assistant</h3>
+
+<p>One of the exciting innovations we’ve integrated into MLSysBook.ai is SocratiQ—an AI-powered learning assistant designed to foster a deeper and more engaging connection with content focused on machine learning systems. By leveraging a Large Language Model (LLM), SocratiQ turns learning into a dynamic, interactive experience that allows students and practitioners to engage with and co-create their educational journey actively.</p>
+
+<p>With SocratiQ, readers transition from passive content consumption to an active, personalized learning experience. Here’s how SocratiQ makes this possible:</p>
+
+
+<ul>
+<li><b>Interactive Quizzes:</b> SocratiQ enhances the learning process by automatically generating quizzes based on the reading content. This feature encourages active reflection and reinforces understanding without disrupting the learning flow. Learners can test their comprehension of complex ML systems concepts.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2kTEI9cc1EC8cT3TZOQOlOjid4Stn6HUw6u_lMJhzlyFjN9uUhEiAF7KgdLt4Kkx-WsrD6h2qD2SXYixq3mhNBHcofRNjirj5YBGkIakL88shHyLDPWF42XXFU6S3pZrY8jSaoA617qSo96w68yc1mfCTdxxpGMX2dmMuR2Aq6TEAIsMtAjVGMlQzzwA/s1600/image1.gif" style="display: block; padding: 1em 0; text-align: center;"><img alt="moving image of an interactive quiz in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2kTEI9cc1EC8cT3TZOQOlOjid4Stn6HUw6u_lMJhzlyFjN9uUhEiAF7KgdLt4Kkx-WsrD6h2qD2SXYixq3mhNBHcofRNjirj5YBGkIakL88shHyLDPWF42XXFU6S3pZrY8jSaoA617qSo96w68yc1mfCTdxxpGMX2dmMuR2Aq6TEAIsMtAjVGMlQzzwA/s1600/image1.gif" /></a></div>
+  
+<li><b>Adaptive, In-Content Learning:</b> SocratiQ offers real-time conversations with the LLM without pulling learners away from the content they're engaging with. Acting as a personalized Teaching Assistant (TA), it provides tailored explanations.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUay_zDBbYIRqjdZURADOmGhOddBRBVCFpavhrLd58U_DPVO6svaHDWdZt1v79OBztkIGX8YX5HUsIwsTZH7GdW41UvB2tBN9pFh_F7ndV3GRypiXSFdur-Urzbk7ADgGnMVwpAyGDiChNwX3tHQSlbXxz2QMT1qlt1JFeNdm95_FOHrjo0uRPIK9iD84/s1600/image2.gif" style="display: block; padding: 1em 0; text-align: center;"><img alt="moving image of an real-time conversation with the LLM in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUay_zDBbYIRqjdZURADOmGhOddBRBVCFpavhrLd58U_DPVO6svaHDWdZt1v79OBztkIGX8YX5HUsIwsTZH7GdW41UvB2tBN9pFh_F7ndV3GRypiXSFdur-Urzbk7ADgGnMVwpAyGDiChNwX3tHQSlbXxz2QMT1qlt1JFeNdm95_FOHrjo0uRPIK9iD84/s1600/image2.gif" /></a></div>  
+  
+  
+<li><b>Progress Assessment and Gamification:</b> Learners’ progress is tracked and stored locally in their browser, providing a personalized path to developing skills without privacy concerns. This allows for evolving engagement as the learner progresses through the material.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhn8OGbgDk-LadioL-JftNCi3Dzc8g0t46yHHiXEOwK07fynDdsdGTbBVfA8DuHtd72ygnpuWw3dk6hQmAbaIFT590IHtTyCZdFzRoNtriU07Ww4p4rV3sFaHcM6bvO2VLphGyDhZ0wLX3Po4VGJ69aXehtbaJWArUxDIqkrQGXftB3CYR2RBzV_lLdJs/s1600/image5.png" style="display: block; padding: 1em 0; text-align: center;"><img alt="A Quiz Performance Dashboard in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhn8OGbgDk-LadioL-JftNCi3Dzc8g0t46yHHiXEOwK07fynDdsdGTbBVfA8DuHtd72ygnpuWw3dk6hQmAbaIFT590IHtTyCZdFzRoNtriU07Ww4p4rV3sFaHcM6bvO2VLphGyDhZ0wLX3Po4VGJ69aXehtbaJWArUxDIqkrQGXftB3CYR2RBzV_lLdJs/s1600/image5.png" /></a></div>
+  
+</ul>
+
+<p>SocratiQ strives to be a supportive guide that respects the primacy of the content itself. It subtly integrates into the learning flow, stepping in when needed to provide guidance, quizzes, or explanations—then stepping back to let the reader continue undistracted. This design ensures that SocratiQ works harmoniously within the natural reading experience, offering support and personalization while keeping the learner immersed in the content.</p>
+
+<p>We plan to integrate capabilities such as research lookups and case studies. The aim is to create a unique learning environment where readers can study and actively engage with the material. This blend of content and AI-driven assistance transforms MLSysBook.ai into a living educational resource that grows alongside the learner's understanding.</p>
+
+
+<h3>Mapping MLSysBook.ai's Concepts to the TensorFlow Ecosystem</h3>
+
+<p>MLSysBook.AI focuses on the core concepts in ML system engineering while providing strategic tie-ins to the TensorFlow ecosystem. The TensorFlow ecosystem offers a rich environment for realizing many of the principles discussed in MLSysBook.AI. This makes the TensorFlow ecosystem a perfect match for the key ML systems concepts covered in MLSysBook.AI, with each tool supporting a specific stage of the machine learning process:</p>
+
+<ul>
+<li><b><a href="https://www.tensorflow.org/datasets" target="_blank">TensorFlow Data</a> (Data Engineering):</b> Supports efficient data preprocessing and input pipelines.</li>
+<li><b><a href="https://www.tensorflow.org/tutorials" target="_blank">TensorFlow Core</a> (Model Development):</b> Central to model creation and training.</li>
+<li><b><a href="https://www.tensorflow.org/lite" target="_blank">TensorFlow Lite</a> (Optimization):</b> Enables model optimization for various deployment scenarios, especially critical for edge devices.</li>
+<li><b><a href="https://www.tensorflow.org/tfx/guide/serving" target="_blank">TensorFlow Serving</a> (Deployment):</b> Facilitates smooth model deployment in production environments.
+</li>
+<li><b><a href="https://www.tensorflow.org/tfx" target="_blank">TensorFlow Extended</a> (Monitoring and maintenance):</b> Offers comprehensive tools for ongoing system health and performance.</li>
+</ul>
+
+<p>Note that MLSysBook.AI does not explicitly teach or focus on TensorFlow-specific concepts or implementations. The book's primary goal is to explore fundamental ML system engineering principles. The connections drawn in this blog post to the TensorFlow ecosystem are simply intended to illustrate how these core concepts align with tools and practices used by industry practitioners, providing a bridge between theoretical understanding and real-world application.</p>
+
+<h3>Support ML Systems Education: Every Star Counts 🌟</h3>
+
+<p>If you find this blog post valuable and want to improve ML systems engineering education, please consider giving the MLSysBook.ai <a href="https://github.com/harvard-edge/cs249r_book" target="_blank">GitHub repository</a> a star ⭐.</p>
+
+<p>Thanks to our sponsors, each ⭐ added to the MLSysBook.ai GitHub repository translates to donations supporting students and minorities globally by funding their research scholarships, empowering them to drive innovation in machine learning systems research worldwide.</p> 
+
+<p>Every star counts—help us reach the generous funding cap!</p>
+
+
+<h3>Conclusion</h3>
+
+<p>The gap between ML modeling and system engineering is closing, and understanding both aspects is important for creating impactful AI solutions. By embracing ML system engineering principles and leveraging powerful tools like those in the TensorFlow ecosystem, we can go beyond building models to creating complete, optimized, and scalable ML systems.</p>
+
+<p>As AI continues to evolve, the demand for professionals who can bridge the gap between ML algorithms and systems implementation will only grow. Whether you're a seasoned practitioner or just starting your ML journey, investing time in understanding ML systems engineering will undoubtedly pay dividends in your career and the impact of your work. If you’d like to learn more, listen to our MLSysBook.AI <a href="https://notebooklm.google.com/notebook/bae2e128-7926-4ba9-8503-2b54ff3237f9/audio" target="_blank">podcast</a>, generated by Google’s NotebookLM.</p>
+
+<p>Remember, even the most brilliant astronauts need skilled engineers to build their rockets!</p>
+
+<h4>Acknowledgments</h4>
+<p><i>We thank Josh Gordon for his suggestion to write this blog post and for encouraging and sharing ideas on how the book could be a useful resource for the TensorFlow community.</i></p></div>
+                <a href="https://blog.tensorflow.org/2024/11/mlsysbookai-principles-and-practices-of-machine-learning-systems-engineering.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.18</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-10-28T12:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.18" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.18 has been released! Highlights of this release (and 2.17) include NumPy 2.0, LiteRT repository, CUDA Update, Hermetic CUDA and more. For the full release notes, please click <a href="https://github.com/tensorflow/tensorflow/blob/r2.18/RELEASE.md" target="_blank">here</a>.</p>
+
+<p><b>Note:</b> Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2><span style="font-size: x-large;">TensorFlow Core</span></h2>
+
+<span style="font-size: large;"><b>NumPy 2.0</b></span>
+
+<p>The upcoming TensorFlow 2.18 release will include support for <a href="https://numpy.org/doc/stable/release/2.0.0-notes.html" target="_blank">NumPy 2.0</a>. While the majority of TensorFlow APIs will function seamlessly with NumPy 2.0, this may break some edge cases of usage, e.g., out-of-boundary conversion errors and numpy scalar representation errors. You can consult the following <a href="https://github.com/tensorflow/tensorflow/pull/73730" target="_blank">common solutions</a>.</p>
+
+
+<p>Note that NumPy's type promotion rules have been changed (See <a href="https://numpy.org/neps/nep-0050-scalar-promotion.html#nep50" target="_blank">NEP 50</a> for details). This may change the precision at which computations happen, leading either to type errors or to numerical changes to results. Please see <a href="https://numpy.org/devdocs/numpy_2_0_migration_guide.html#numpy-2-migration-guide" target="_blank">the NumPy 2 migration guide</a>.</p>
+
+<p>We've updated some TensorFlow tensor APIs to maintain compatibility with NumPy 2.0 while preserving the out-of-boundary conversion behavior in NumPy 1.x.</p><br />
+
+<span style="font-size: large;"><b>LiteRT Repository</b></span>
+
+<p>We're making some changes to how <a href="https://github.com/google-ai-edge/LiteRT" target="_blank">LiteRT</a> (<a href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/" target="_blank">formerly known as TFLite</a>) is developed. Over the coming months, we'll be gradually transitioning TFLite's codebase to LiteRT. Once the migration is complete, we'll start accepting contributions directly through the LiteRT repository. There will no longer be any binary TFLite releases and developers should switch to LiteRT for the latest updates.</p><br />
+
+<span style="font-size: large;"><b>Hermetic CUDA</b></span>
+
+<p>If you build TensorFlow from source, Bazel will now download specific versions of CUDA, CUDNN and NCCL distributions, and then use those tools as dependencies in various Bazel targets. This enables more reproducible builds for Google ML projects and supported CUDA versions because the build no longer relies on the locally installed versions. More details are provided <a href="https://github.com/openxla/xla/blob/main/docs/hermetic_cuda.md#environment-variables-controlling-the-hermetic-cudacudnn-versions" target="_blank">here</a>.</p><br />
+
+
+<span style="font-size: large;"><b>CUDA Update</b></span>
+
+<p>TensorFlow binary distributions now ship with dedicated CUDA kernels for GPUs with a compute capability of 8.9. This improves the performance on the popular Ada-Generation GPUs like NVIDIA RTX 40**, L4 and L40.</p>
+
+<p>To keep Python wheel sizes in check, we made the decision to no longer ship CUDA kernels for compute capability 5.0. That means the oldest NVIDIA GPU generation supported by the precompiled Python packages is now the Pascal generation (compute capability 6.0). For Maxwell support, we either recommend sticking with TensorFlow version 2.16, or compiling TensorFlow from source. The latter will be possible as long as the used CUDA version still supports Maxwell GPUs.</p></div>
+                <a href="https://blog.tensorflow.org/2024/10/whats-new-in-tensorflow-218.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.17</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-07-18T09:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.17" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.17 has been released! Highlights of this release (and 2.16) include CUDA update, upcoming Numpy 2.0, and more. For the full release notes, please click <a href="https://github.com/tensorflow/tensorflow/blob/r2.17/RELEASE.md" target="_blank">here</a>.</p>
+
+<p>Note: Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2>TensorFlow Core</h2>
+
+<h3><span style="font-weight: normal;">CUDA Update</span></h3>
+
+<p>TensorFlow binary distributions now ship with dedicated CUDA kernels for GPUs with a compute capability of 8.9. This improves the performance on the popular Ada-Generation GPUs like NVIDIA RTX 40**, L4 and L40.</p>
+
+<p>To keep Python wheel sizes in check, we made the decision to no longer ship CUDA kernels for compute capability 5.0. That means the oldest NVIDIA GPU generation supported by the precompiled Python packages is now the Pascal generation (compute capability 6.0). For Maxwell support, we either recommend sticking with TensorFlow version 2.16, or compiling TensorFlow from source. The latter will be possible as long as the used CUDA version still supports Maxwell GPUs.</p>
+
+<h3><span style="font-weight: normal;">Numpy 2.0</span></h3>
+
+<p>Upcoming TensorFlow 2.18 release will include support for Numpy 2.0. This may break some edge cases of TensorFlow API usage.</p>
+
+<h3><span style="font-weight: normal;">Drop TensorRT support</span></h3>
+
+<p>Starting with TensorFlow 2.18, support for TensorRT will be dropped. TensorFlow 2.17 will be the last version to include it.</p></div>
+                <a href="https://blog.tensorflow.org/2024/07/whats-new-in-tensorflow-217.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="recetas-de-comida" class="categoria-seccion">
+            <h2 class="categoria-titulo">Recetas de comida</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">Galletas y pastas con pistola. El dulce perfecto para los más pequeños</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Recetas de Rechupete</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 07:22:56 +0000</span>
+                </div>
+                <img src="https://www.recetasderechupete.com/wp-content/uploads/2025/05/galletas-con-pistola-portada-11-1200x828.jpg" alt="Galletas y pastas con pistola. El dulce perfecto para los más pequeños" class="noticia-imagen">
+                <div class="galeria"><img src="https://cdn.recetasderechupete.com/wp-content/uploads/2025/05/galletas-con-pistola-portada-11.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion">Hacer galletas en mi casa puede ser un pasatiempo. El trabajo, amasar y dar forma es un ritual divertido y nos permite pasar ratos entretenidos con los niños. Las galletas que hoy os traigo se van a convertir en la preferidas de los peques, poder hacer un montón de formas diferentes con sólo un disparo [&#8230;]</div>
+                <a href="https://www.abc.es/recetasderechupete/galletas-y-pastas-con-pistola-el-dulce-perfecto-para-los-mas-pequenos/131600/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Merluza en salsa verde, con la tradicional receta vasca</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Recetas de Rechupete</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 07:22:44 +0000</span>
+                </div>
+                <img src="https://www.recetasderechupete.com/wp-content/uploads/2020/07/Merluza-salsa-verde-1200x828.jpg" alt="Merluza en salsa verde, con la tradicional receta vasca" class="noticia-imagen">
+                <div class="galeria"><img src="https://cdn.recetasderechupete.com/wp-content/uploads/2020/07/Merluza-salsa-verde.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion">Si tuviera que escoger una de las recetas de pescado y marisco de la gastronomía vasca no sabría elegir entre una buena merluza a la vasca, un guiso de merluza, merluza a la Koskera o la que os presento hoy, merluza en salsa verde. Aunque otras recetas como la merluza a la marinera, la merluza [&#8230;]</div>
+                <a href="https://www.abc.es/recetasderechupete/merluza-en-salsa-verde-a-la-vasca-receta/4445/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Cómo preparar churros caseros</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Recetas de Rechupete</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 07:22:31 +0000</span>
+                </div>
+                <img src="https://www.recetasderechupete.com/wp-content/uploads/2025/03/Churros-caseros-paso-1-1200x828.jpg" alt="Cómo preparar churros caseros" class="noticia-imagen">
+                <div class="galeria"><img src="https://cdn.recetasderechupete.com/wp-content/uploads/2025/03/Churros-caseros-paso-1.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion">¿Quieres aprender cómo preparar churros caseros? No existe un rincón de España donde no se hagan los tradicionales churros o porras. De Norte a Sur de la península los churros son un recurso siempre bienvenido, para un desayuno o una merienda acompañados de un buen chocolate caliente o, simplemente un café con leche. Este dulce, [&#8230;]</div>
+                <a href="https://www.abc.es/recetasderechupete/como-preparar-churros-caseros-receta-paso-a-paso/9752/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Yemas de Caravaca con varias coberturas</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Recetas de Rechupete</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 06:36:33 +0000</span>
+                </div>
+                <img src="https://www.recetasderechupete.com/wp-content/uploads/2025/05/Yemas-de-Caravaca-4-1200x828.jpg" alt="Yemas de Caravaca con varias coberturas" class="noticia-imagen">
+                <div class="galeria"><img src="https://cdn.recetasderechupete.com/wp-content/uploads/2025/05/Yemas-de-Caravaca-4.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion">Las yemas de Caravaca son un exquisito y delicado bocado que, una vez pruebas, es imposible olvidar. Típicas de la localidad murciana de Caravaca de la Cruz, se encuentran en los escaparates de todas sus pastelerías. Desde las básicas, rebozadas en azúcar glas, hasta las más golosas que se recubren con caramelo, con chocolate o [&#8230;]</div>
+                <a href="https://www.abc.es/recetasderechupete/yemas-de-caravaca-con-varias-coberturas/131486/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Michirones murcianos. Un guiso tradicional de habas secas</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Recetas de Rechupete</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 06:36:20 +0000</span>
+                </div>
+                <img src="https://www.recetasderechupete.com/wp-content/uploads/2025/05/Michirones-paso-9-1200x828.jpg" alt="Michirones murcianos. Un guiso tradicional de habas secas" class="noticia-imagen">
+                <div class="galeria"><img src="https://cdn.recetasderechupete.com/wp-content/uploads/2025/05/Michirones-paso-9.jpg" alt="Imagen 1" loading="lazy"></div>
+                <div class="noticia-descripcion">Si hay un plato que huele a Murcia en cada cucharada, ese es sin duda los michirones murcianos. Este guiso contundente, a base de habas secas, es todo un clásico de la gastronomía murciana y se disfruta especialmente en los meses más fríos, aunque en algunos bares y restaurantes se sirve durante todo el año [&#8230;]</div>
+                <a href="https://www.abc.es/recetasderechupete/michirones-murcianos-un-guiso-tradicional-de-habas-secas/131476/" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="noticias" class="categoria-seccion">
+            <h2 class="categoria-titulo">Noticias</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">Juez dictamina que el Gobierno de Trump debe repatriar a solicitante de asilo de Guatemala deportado injustamente - CNN en Español</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Google News</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 09:27:00 GMT</span>
+                </div>
+                <img src="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw" alt="Juez dictamina que el Gobierno de Trump debe repatriar a solicitante de asilo de Guatemala deportado injustamente - CNN en Español" class="noticia-imagen">
+                
+                <div class="noticia-descripcion"><ol><li><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQTG8zR2htaElYTUNrcGhIcWZnNVhidWw1X1Y1QzFtQTdYMUZweEJTMkhsNkRYQUx6V3R0T1RtVW9aQW1aSGptMzc3Mi0yQVVuNTk4cEh4bkM0YnpQdjhMS091R1lrQlZVY2t6WjJuNE5qcVVzei1rdkdySndlXzZwbXRIRi02X1pFd1RjREdtdjBhSkV4UjVOWlh4dGc0VUFS?oc=5" target="_blank">Juez dictamina que el Gobierno de Trump debe repatriar a solicitante de asilo de Guatemala deportado injustamente</a>&nbsp;&nbsp;<font color="#6f6f6f">CNN en Español</font></li><li><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNWGlHT0VtTUNmR3RWMEUxQlU3Y1ZsSElsTHR0QkJLZ0xtaEp5SXJyQmRtczU4N1JUZXB4NnBpTE1JY3IwRTBmNmlEMUY0c2xKaU5JRktMVk8wOUZZYVRMdG1GTUdBcW5DVWJwTlUtdDM2dklmdkhjakdCaUt0M2FmQ0NVUmllSmlDVXB5YUZ5dnBjVTFmY0VTOU5idWNOc3l1Vmc?oc=5" target="_blank">Juez federal ordena al gobierno de Trump devolver a EEUU a guatemalteco deportado a México</a>&nbsp;&nbsp;<font color="#6f6f6f">AP News</font></li><li><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxNdktqNmpMZWx5bHhYcXpkX2ZkdWRxUTdFYlhPdWpMWF96UnU3Y2V4TVRuNTNIdjNJSm1yNjF5R20xTU1FUTdCaDlBSFV6V0gyZWlGd2JKYk9hdzdFVG1BbHVxTDVqVzhkR2hVSk1YOTFYeUcxd1MyM3VSZ0ZyZl9RcXNVR25XbjlDOVhVZVpLWDM5bV9jdC0wV3Q4VGdmR2hCbTFDQzVHQzk0TUJsT0RrbFZhM0dkU2F0RGQ5YU5fa2ZxbndUZkxueEVNMHoxUGpQV0pqUWp3N0dNWlo4blpTNllGdW1WdVBIdlpwd1FHX2w?oc=5" target="_blank">Un juez obliga a la Administración Trump a regresar a un guatemalteco deportado por error: “No puedo ser gay aquí”</a>&nbsp;&nbsp;<font color="#6f6f6f">EL PAÍS</font></li><li><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxQU2ZtVndURXVmdUlsYWtfQ0E2WjYycDhwQ1FWTmpNOEFDTFpKcDZhLUJpWkNHRlZXd0hKMV9oelJsYXhtZ0NOVXRhY2lBbkV3VjMtWHRKUUJPY3Z1VGpNQTE3QzUxcWEwbE9MS2EyaUVFdWJ6UEM4ZExiSlhXSEtYeGVJcnBZd1FmTkJ1TXlZWWFLVFJVQ25WUFZPMXRGdnVLX1lMRFhnR3JSLU1pSFUxUDlUYS0xN29XTE00ZWJDWGoydmI1V1dKMmxObEJLTXB20gHWAUFVX3lxTFBlZU9PR3h6U2cwZEl0WTk1bnQyUnd2Q1RublhQS1VJVG9Wa3IteHY1TVdlRXh5UXc5Ti1mWGZicEduVnJoenpUdW1hNERia1ZjS2ZGRjVyMGc0M0xqVUlFUFJYOFRCMmVfTUhVQkxITjdzcDhlODZCalJDZ010bFpDcXN5NmFOSUJEcWFoNHdRVVZtZmgxb0pqLU80a1VTRGtFM2pjYXVQN1d6MXd2REg0NEhTaVlQTFpXcVdKS1hVZnRrcUV4M2JibloyZzJRS3AtLTUxRWc?oc=5" target="_blank">El caso del inmigrante guatemalteco que fue secuestrado y violado en México y que el gobierno de Trump deportó a ese país por error</a>&nbsp;&nbsp;<font color="#6f6f6f">Univision</font></li><li><a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxPRXhTY3BDZHdFQlNDTWF3eUxIWlhTd19JbnBNak40a0NBUk4zbHhMNWlQX3M3WFlrMEVsdTRlSUxRUmo2OTc0LW9IRXU1RlhUd3Q1em11Y3E2S1kxVjVLQ1dkNE40Tk9ZcEZ5ZUpseEJwLTdjYjRRd05DTUJZNHd1ZmhKa1RGNXlPTHdLdU9YWVJVWnJCVkpPNVV5RVdHcGU2T3ZWQ21fbWdwd3UzR3JrMy1lbzc2ek9oUEVRNFcwQjNJUzI5LXg3c203TXREdUxfWkJnb3Y0WnpUTDU0NXp3M2M1cU5VNGhfU0VBZlZpRGZxMFFTZmptVTR3?oc=5" target="_blank">Nuevo revés judicial para Trump: un tribunal falla a favor del regreso de un migrante deportado a México</a>&nbsp;&nbsp;<font color="#6f6f6f">LaSexta</font></li></ol></div>
+                <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQTG8zR2htaElYTUNrcGhIcWZnNVhidWw1X1Y1QzFtQTdYMUZweEJTMkhsNkRYQUx6V3R0T1RtVW9aQW1aSGptMzc3Mi0yQVVuNTk4cEh4bkM0YnpQdjhMS091R1lrQlZVY2t6WjJuNE5qcVVzei1rdkdySndlXzZwbXRIRi02X1pFd1RjREdtdjBhSkV4UjVOWlh4dGc0VUFS?oc=5" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Trump retoma su guerra comercial y amenaza a Europa y a Apple - The New York Times</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Google News</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 20:43:34 GMT</span>
+                </div>
+                <img src="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw" alt="Trump retoma su guerra comercial y amenaza a Europa y a Apple - The New York Times" class="noticia-imagen">
+                
+                <div class="noticia-descripcion"><ol><li><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQQzNQaTZiTUJnTGpNc2pKTUZYNjI3TFpCT0t6YnF0aURFY1ZQOENmOVY2M0lHRUszNlFXT3F6aV9wcEhYS0NxTUZ3VVBYZW90NXI5R3F3bk9zVWtzTGExajFGMm1FQU9oaHVmSDFVRVZseWFYX2ZWYmtFeUdhX05SVElrRzlnSkdTNnlGeURyZF93WDRXT2VUSEFB?oc=5" target="_blank">Trump retoma su guerra comercial y amenaza a Europa y a Apple</a>&nbsp;&nbsp;<font color="#6f6f6f">The New York Times</font></li><li><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxQRk9KWUQ1ekFZdU1ILVdWZHhVV0N6M1Q0SERQLW9pUEhhcmZLWExUdVYzVklqaTVnMXRLTE15bUFWUG9kUHlRVi1UQUN2OTdJOG4tdE5TbzBEaVBZWjZDamZDdk92M2JtTUxKRFNvV20xa1ZiNTBCY1l6MU00NnVmWWhOY1E2T05pTU90WUtzNHNEZUk2azhYSk82VUFEdk95S2gxNE0xUS1HNldYeWtib2xZb1EwY3VYZlZ1YnZ2M09LYXNLVnJiZmFUM1ZCX2FsREE?oc=5" target="_blank">UE Quiere Relaciones Comerciales Con EEUU Basadas En El "Respeto" Y No En "Amenazas" (Comisario)</a>&nbsp;&nbsp;<font color="#6f6f6f">Barron's</font></li><li><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQZnZhenN3cG4waFVMeHpmc0U2Y1pMZFc4YWJGeEIzS2tpUzJBeDlrY3ZqTVRVOHRmOTlTMm9xQ1lrNDBtQkVTVmNqNF84dmxGbHVOUzh2aXQ2eHdZb0tZd09qa0xhVEstNDNkUDVKUVozUXR3LXBHWHlycnE1Qk5DeHZ6NXNEU09UOFBwUmpYNGNJMjd5LUxXYU1weVAzWWc?oc=5" target="_blank">Nuevas amenazas arancelarias de Trump tumban Wall Street, bolsas europeas y acciones de Apple</a>&nbsp;&nbsp;<font color="#6f6f6f">AP News</font></li><li><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxOd2NDN21hMGdBNjJRcmJiMno0M2pPMHY2alJMV3ZGUUhya2VtYVBDN3g3TDhfdWx6ZHU3Um1MSUNpNmhra1k5SlpTNlBQcEcwTVNwaU9XM2EyMkZvTnlRNndLcU0zdUJuMGxYSVF3eVNmUFJtaWtKd3hYMHVCaW1fb0RPa1JoS2xGTVVnOXFoRQ?oc=5" target="_blank">Trump dice que "no está buscando un acuerdo" con la Unión Europea tras amenazarla con un arancel del 50</a>&nbsp;&nbsp;<font color="#6f6f6f">CNN en Español</font></li><li><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE8tc216VG1IeVVxdkxabW9iZjJ3VUt2ZldoRmZhZjE2LURoNTJLTVUxUkMtdFA0bHg1Zkd2c2RFbFEzNzRfSkhBc05uc1VzUl9rQUUwZTA4NDB2RGx6TmFMQjF2SzBxQlpEQkUxNzJBS3RRSWlt0gF0QVVfeXFMT2IybGFDcm5DTDRHOUswampfUlVkcFIzdDNjR2U2ODRKWEM3RVU1RjNINEdSR3Z0dXdiRThxNE1UR2VlUVdqdG5MWmc1UDRsS1hhT1l4NUxvLUVuY245N0VLMW9vcEY1Y0F1SnpDRW9YdVZjSTM?oc=5" target="_blank">Trump reaviva su guerra comercial contra la UE y amenaza a los fabricantes de celulares</a>&nbsp;&nbsp;<font color="#6f6f6f">El Nuevo Herald</font></li></ol></div>
+                <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQQzNQaTZiTUJnTGpNc2pKTUZYNjI3TFpCT0t6YnF0aURFY1ZQOENmOVY2M0lHRUszNlFXT3F6aV9wcEhYS0NxTUZ3VVBYZW90NXI5R3F3bk9zVWtzTGExajFGMm1FQU9oaHVmSDFVRVZseWFYX2ZWYmtFeUdhX05SVElrRzlnSkdTNnlGeURyZF93WDRXT2VUSEFB?oc=5" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Rusia lanzó un ataque combinado con drones y misiles sobre Kiev: hay al menos 15 heridos - Infobae</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Google News</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 00:13:52 GMT</span>
+                </div>
+                <img src="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw" alt="Rusia lanzó un ataque combinado con drones y misiles sobre Kiev: hay al menos 15 heridos - Infobae" class="noticia-imagen">
+                
+                <div class="noticia-descripcion"><ol><li><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcWs5RTA5UVdJZkJyUVg2ZVhnRzBVS3J4N3l1eVNLSTBHTFRRSnB6UmFDZE0tX2RMY3BtcjdiaGNCSG5BS2s4cjhnbTFBckRNUVUybEU3QnRaWVNGR25ObHJwdnNERW1Vb21BTGZvZkc2ZHd1OVJubTZWVkoyVDN2Z285SjZEUnhraTVJRU5hT3daY2tOd0tQT2lUSDlCQWtJWExlN3RNbXRaNTdLbnJkcGxpT19EQnBrLWJaNzdlMHl3VDU5WFlGWjFIU1Q5RFF4NEdIZNIB7wFBVV95cUxPeThNR2lRU0NiUWlRZWU1MzJ3emw2RURlTUNrWXlDbjhVb0NpeGxfaFNNeC1SNmZSQ2VpWFU1SVJpcnQ3WGk0NU1NWUlBQzRycy1FMjFCQUFITkJ3TndjVnl4eUxuQXF2M0I3ak5oZjVPY1RHZFUzeUU1WVQ3T1hMTkFjUFBkVHMtbnBrUGhJc1VLNXo5T1JyZVdLcWhrNWk0NU5HaXpndWloM1ZWcFhFTVB4S1BPc2lZMUZqR3hXTTB0bTd1dmNiSFpWS3ZHSXBDekdjM09YMXJzTDVEVXpjVzgzY1RLUFU5aUJzRHJUQQ?oc=5" target="_blank">Rusia lanzó un ataque combinado con drones y misiles sobre Kiev: hay al menos 15 heridos</a>&nbsp;&nbsp;<font color="#6f6f6f">Infobae</font></li><li><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPcTZmUVk0Y0Z6YUFNUGVJbFNqaDJNQmt2a1F3cmJkOGZORXpkbk9IMUpuQUdqZEtUWDdFem56THBwOUkxUnE2SWI1RmQtUU9aaThrMGZPZUJ1bDR1UEZPd0dOb21GQmFzM1ZRbWxWcUtqNERHMzB2ZVNGRGNjWExwTjNVNTZYV0U2U0FwUHk3czNiaVVyY2ZncUFKSl9wSDQ?oc=5" target="_blank">Al menos 13 muertos en bombardeo ruso en Kyiv, horas después del comienzo de importante intercambio de prisioneros</a>&nbsp;&nbsp;<font color="#6f6f6f">CNN en Español</font></li><li><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOUFRiVHVKWDZPMGppNVV2cTR6amZrSUU3MW1mY2RDTllGUWx6WDJyRG9QclFkeVZ6eXFtNWt6YkNPVXF0X1BKdVA3SUZJaDJyeXE2U1ZWamFoenduNVdZbHVtSDRjM20ycnlZejFaN29pUnZ6Y1RWR2RGbDV5bnZ2dmlNWVpJWlpib3J3U0Z6WVFZZlRTcDZjaWtmRy1KNWRHckE?oc=5" target="_blank">AP Fotos: Kiev sufre un ataque masivo de drones y misiles rusos</a>&nbsp;&nbsp;<font color="#6f6f6f">AP News</font></li><li><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxPUnlfRm4yMTFXSmhzdnBkR0h0X0hfN0hOQkV4RGJHSUoyak9xVmVJWjhGdUtlc1VOckI2d2w3YTBGLUNiWnplUWc5c09nNlppNkExMVdNYUt1aVdfOFNmcnhBS1NvXzJRV3BPQUVBODVDM3lnckZrbWgxMGtiZkxEOGRGUUNaRWhQZV9IcXpxQlRrZ3NvN0N6d3loeVotLWJhcldpTWdRa2ROLWpPeUpDbDZud1Y5X3c?oc=5" target="_blank">Rusia Bombardea Kiev Con Drones Y Misiles En Medio De Canje De Prisioneros</a>&nbsp;&nbsp;<font color="#6f6f6f">Barron's</font></li><li><a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxPcVVRVXo3Wk5JVWlMajdXSjh3UVVnQnZnZ2JrYjdUeHpQNHJfaHAzMDg3SWFaZ2Z1a2FUUUNKUDU0MHlROTVHS2NVQnRHVUdpRC1vVnBhTFFlRXZoVzI1N3VLR1B5TlF0MG1ORld1dEV2NHo5dzB1bHZkelhFYkNXZ0dtTFRkTnNhcWp5aFd4U0lNM1A2dDh3aGRqT0VFQTBzbFQwMTVMZXQyaXpoc3N4NU5LZ256bjJSWFJoUTdWbUJsRVdraDU4M2Rzdi05SnVhYkk5SEVWd3VXUnExQmV3WUxXcmRpZkMtdkttY19QONIB9AFBVV95cUxQSnp1OW1aZnF1NFNSVVJ6Z18wbkxseWxaQW5VNk9zR0tTYnpoWko3MXBhZm02Y2RubkJSdEQxME03MjBfcUgtelhObU1MSnlnM0F2YUVVYnVSNDNBRjdsM2trcUpudnFkV3EzOUF0UHlKdjl4ZjdMUE43Z0RBeHA5elB4dFl4RW1xRXRCOVJsckJPcmwxc1ZPYkNfNXpaYmJ5dm1Cb0pXYmZFVFh1X1dnTDY5NUNtS0RyOW1VazB6NkxnM1Azcmd3eUpBVzh3WnhxcGVwQllqek4wbjFlaGhKU3ZPU25vN1lnaldfeGMxR1pOcnEw?oc=5" target="_blank">Rusia derriba casi 100 drones ucranianos en una sola noche</a>&nbsp;&nbsp;<font color="#6f6f6f">El Vocero de Puerto Rico</font></li></ol></div>
+                <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcWs5RTA5UVdJZkJyUVg2ZVhnRzBVS3J4N3l1eVNLSTBHTFRRSnB6UmFDZE0tX2RMY3BtcjdiaGNCSG5BS2s4cjhnbTFBckRNUVUybEU3QnRaWVNGR25ObHJwdnNERW1Vb21BTGZvZkc2ZHd1OVJubTZWVkoyVDN2Z285SjZEUnhraTVJRU5hT3daY2tOd0tQT2lUSDlCQWtJWExlN3RNbXRaNTdLbnJkcGxpT19EQnBrLWJaNzdlMHl3VDU5WFlGWjFIU1Q5RFF4NEdIZNIB7wFBVV95cUxPeThNR2lRU0NiUWlRZWU1MzJ3emw2RURlTUNrWXlDbjhVb0NpeGxfaFNNeC1SNmZSQ2VpWFU1SVJpcnQ3WGk0NU1NWUlBQzRycy1FMjFCQUFITkJ3TndjVnl4eUxuQXF2M0I3ak5oZjVPY1RHZFUzeUU1WVQ3T1hMTkFjUFBkVHMtbnBrUGhJc1VLNXo5T1JyZVdLcWhrNWk0NU5HaXpndWloM1ZWcFhFTVB4S1BPc2lZMUZqR3hXTTB0bTd1dmNiSFpWS3ZHSXBDekdjM09YMXJzTDVEVXpjVzgzY1RLUFU5aUJzRHJUQQ?oc=5" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Pediatra que trabaja en hospital de Gaza recibe los cuerpos de sus nueve hijos, muertos en ataque del ejército de Israel - ELTIEMPO.COM</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Google News</span>
+                    <span class="noticia-fecha">Sat, 24 May 2025 17:50:31 GMT</span>
+                </div>
+                <img src="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw" alt="Pediatra que trabaja en hospital de Gaza recibe los cuerpos de sus nueve hijos, muertos en ataque del ejército de Israel - ELTIEMPO.COM" class="noticia-imagen">
+                
+                <div class="noticia-descripcion"><ol><li><a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZ0s0N2pfZzU1TUUtbE9vV1IzY1YtS2V2QnJnYTVIMTVJb3FoX2pITERHdExZUVJYV0xlTGpkLUVJMHdTZFRWb3lvdGJXem13bmhGWC1rdnVYWW5YREluaVJTYVJTalExV1pQR2NwVjYxSnpBR1FuM1ljcXc3a0pzd0tfZ2lSclhCaUVoWFN0aGpNbEFPekdqcDNyTXdTRDVJVzJGOW1RYW5wUkVjWjdfS0d1bE9nUEtXSlMtblBPMDNXbWZzbTlZTVNIdFp3Q0U5dkQtMFhHd2otc0pva1VFZ0tQR3RtSTk4Z1BQMzJ4S0lGb2YyZlRvcURn?oc=5" target="_blank">Pediatra que trabaja en hospital de Gaza recibe los cuerpos de sus nueve hijos, muertos en ataque del ejército de Israel</a>&nbsp;&nbsp;<font color="#6f6f6f">ELTIEMPO.COM</font></li><li><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPNkMwV28wSWlTaWVjLXowYkp1aUtTcUhuVUJBelcxTDk2cFRmQUZhaDE4VU50cmltVnpfN3RXc3U4bk1fOE5CLUx4WjlkN3pNNkszOUI2S3F3QXMtNFZXM3pMNXY0Mk5yMmhlUG9xV2JmZjY5SFFSNkhIZEVxN29nQkxCX28zZXU5VnBvZEhUOF8waWNPc1JVU2FZUQ?oc=5" target="_blank">9 de los 10 hijos de una doctora mueren en ataques de Israel en Gaza</a>&nbsp;&nbsp;<font color="#6f6f6f">AP News</font></li><li><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOMU53R2JyS2JnQURKdUtpNHB2ZjJZQk5EdFJkWWtmc2lvZkxYTFRIalkySGE2TU1vcGloVWNzM0hycjhCUTR5UWpjUG92UDljMk9pM3BsOFVoRkpUTl85dC1HRTBfbXRJeDM4dTJIb2E2ZFF4QU1sbEFWRFFUOU9Cb1N6blluU0RWWTNXVGZGYVpxbktjY0M0WjBn?oc=5" target="_blank">Una médica de Gaza estaba trabajando cuando llegaron los cuerpos quemados de sus hijos</a>&nbsp;&nbsp;<font color="#6f6f6f">CNN en Español</font></li><li><a href="https://news.google.com/rss/articles/CBMijAJBVV95cUxOZ2hCcnlRVnRUNDV6NzhkVnNucFEtUHFxZWxDclRoeGx3OUxNUkViMmY3TVBQTEhFWDJTNW1BcERDTEJBVGJyUnpnVW1nZUg1QlNqWDJ3REJKTjRWMldCdTNBUVNZYno2UHlfV3BXbE82RWxKeGZ4VWJIUEtXS0UzVlhsQkNtcTluMy1QTk9zbS0zT2hJSDl0WFFSWDRIalk5dWFNdFhDZzZSajE1eFRHaC0yUmh6Y0NydUxFSHQxQm5jaW94X2R6eXNEMFhOYzF1V2Vtdm9Oc0t5Ukd2ampSQkN6YXcwajM3SXBOMVZJWHJFbjJmdlk0d2hXcVhOTlg3YWI0RzZuWmVPWWh3?oc=5" target="_blank">Última hora del conflicto en Oriente Próximo, en directo</a>&nbsp;&nbsp;<font color="#6f6f6f">EL PAÍS</font></li><li><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcnVWREk1dVVVQm83d1NneWV5RG5sWTFURHlPWnMtdUdrWjJNSnRKS2hWNThER3oyb2h2TGlXcmlBaDZnV0NPcjE3dDJVam9sN1RsSDFwM09UaUVxd3lBYmFfRkFLTnJOTkdoTUJwMXRTa0hiSlNibWR1M2t4UkhjcUFKcjRYWUE1VVRzQWQ5ZVRTRzlIaGJBLUZzTUhLUUFqcVZudExhZEllSmpIc21kYjlheVhfazJRQ2M1SHo5dElmSWp6ZnpEcm0zbmkwTW5S?oc=5" target="_blank">Al Menos 15 Muertos En Ataques Israelíes En La Franja De Gaza, Según La Defensa Civil</a>&nbsp;&nbsp;<font color="#6f6f6f">Barron's</font></li></ol></div>
+                <a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZ0s0N2pfZzU1TUUtbE9vV1IzY1YtS2V2QnJnYTVIMTVJb3FoX2pITERHdExZUVJYV0xlTGpkLUVJMHdTZFRWb3lvdGJXem13bmhGWC1rdnVYWW5YREluaVJTYVJTalExV1pQR2NwVjYxSnpBR1FuM1ljcXc3a0pzd0tfZ2lSclhCaUVoWFN0aGpNbEFPekdqcDNyTXdTRDVJVzJGOW1RYW5wUkVjWjdfS0d1bE9nUEtXSlMtblBPMDNXbWZzbTlZTVNIdFp3Q0U5dkQtMFhHd2otc0pva1VFZ0tQR3RtSTk4Z1BQMzJ4S0lGb2YyZlRvcURn?oc=5" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Alumnos internacionales de Harvard reaccionan al anuncio del gobierno de Trump - The New York Times</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">Google News</span>
+                    <span class="noticia-fecha">Fri, 23 May 2025 17:49:40 GMT</span>
+                </div>
+                <img src="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw" alt="Alumnos internacionales de Harvard reaccionan al anuncio del gobierno de Trump - The New York Times" class="noticia-imagen">
+                
+                <div class="noticia-descripcion"><ol><li><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQOWdQOUlTUDQwWExlemhVWlVPVmdDRzU4U2FpMVd5ZUdWSXBLQzI4X1VPRXJ6YzYwdEVBMnptWFQ0c1BLSXlXWFFqZDVrWWhzSlBGbVpROHZHWXMwN2VULWx0SThYQVlrY3pVTXZGWVBNanBkb0V2VHhsbUJVclAtOTh2Vk83bVJwc1BEUEhtZHhkLUxta0dlbUl0MS10M2g1?oc=5" target="_blank">Alumnos internacionales de Harvard reaccionan al anuncio del gobierno de Trump</a>&nbsp;&nbsp;<font color="#6f6f6f">The New York Times</font></li><li><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOUkR1QlJqX0p0OUxUYWxiU1liUjd5ZDhpZkwzaDVnTDRaT0ZvVTdzVjhRbGtLYXJHXzAtbzJqbllEQlFTcThsQlBTX2VPdWJZU01BTVpuQjhoV1VtelJTWjNYaXg2Vzc3aEUzNHNZa01QNDY0ZG1xYlh6aWRVR2dhb3JpWTQ3TndhaV82WVFfeWQ2S3hh?oc=5" target="_blank">Princesa belga no sabe si podrá seguir en Harvard tras prohibición de Trump a alumnos extranjeros</a>&nbsp;&nbsp;<font color="#6f6f6f">AP News</font></li><li><a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxPSW1IcnFhRzJQeWlydGpzaXU5UVBSa0ZGUnZIRFZOaThfd2Uxejc3Tnh4M0d5bWNsM21mb21Mc0tGMVlCOVpuZlNfWWs5cXBBTzl6VV8tUTJ1T3VXRGpzYUxDX3ItTTJNR0ZNR2drLTdrUGltd0RQdFdEUkMyNkRwdmQwcVh1c3l2aHRYSGROOHYtbElVa19seF9HZHc0a1haR1NwSmxQY3AzeUtfb3ZOTlNwRmxfQ1lsdzFpaGh4dnRrYm1OQThpZUo3amJlLTh5TS1xVFFYWXBZb2k1Ujk0Zg?oc=5" target="_blank">Cómo afectará la medida del gobierno de Trump a los estudiantes internacionales de Harvard</a>&nbsp;&nbsp;<font color="#6f6f6f">Los Angeles Times</font></li><li><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxObklJNHNjaGZvcjg3U0J6UTR5ZGRmVTBCVXNJNlVVem1UTnhPcG5hd3k2UDFXSTdNYVZzSlNmaHBUZW04WS1LUUxfOHNGWFV1Ym1PSDl1VFMtY3RJdmpFZXpkMUQtblRZdVBIREluMW50Y0szZXh3TmJ1Z0liWWsyT1hjY3J1R1F6ZlNUZzRMTXZOMmJ3S0xYWl9ySQ?oc=5" target="_blank">Jueza bloquea intento de Trump de prohibir inscripción de estudiantes extranjeros en Harvard</a>&nbsp;&nbsp;<font color="#6f6f6f">Times Union</font></li><li><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOZWFlMUNDLUs5VFVoZEJmU2h1N0N0T2tKSF90VGVXWC1scHF5dk52Xy1kcDh6czY4V2VaaU9JdWxlOERha09WMjg3ekVWV3puSUo1ZEczLVFYQVQyQUZXX1JVUFZSV0hRX1o5NjVyUzFVcTZxdUFwdzdKYXpCUWFTRzFITGVhYkQ0alRFc293djlDb25sTU5wdmJ4WV9lczVPRjNtbXNSbUlDYXp3TW1NaVl2dWtmQy1RcFAtWQ?oc=5" target="_blank">La Princesa Heredera Belga Queda En Medio Del Choque Entre Trump Y Harvard</a>&nbsp;&nbsp;<font color="#6f6f6f">Barron's</font></li></ol></div>
+                <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQOWdQOUlTUDQwWExlemhVWlVPVmdDRzU4U2FpMVd5ZUdWSXBLQzI4X1VPRXJ6YzYwdEVBMnptWFQ0c1BLSXlXWFFqZDVrWWhzSlBGbVpROHZHWXMwN2VULWx0SThYQVlrY3pVTXZGWVBNanBkb0V2VHhsbUJVclAtOTh2Vk83bVJwc1BEUEhtZHhkLUxta0dlbUl0MS10M2g1?oc=5" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="ciencia" class="categoria-seccion">
+            <h2 class="categoria-titulo">Ciencia</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.19</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2025-03-13T09:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.19" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.19 has been released! Highlights of this release include changes to the C++ API in LiteRT, bfloat16 support for tflite casting, discontinue of releasing libtensorflow packages. Learn more by reading the <a href="https://github.com/tensorflow/tensorflow/blob/r2.19/RELEASE.md" target="_blank">full release notes</a>.</p>
+
+<p><b>Note:</b> Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2><span style="font-size: x-large;">TensorFlow Core</span></h2>
+
+<h3><span style="font-size: large;">LiteRT</span></h3>
+
+<p>The public constants <code>tflite::Interpreter:kTensorsReservedCapacity</code> and <code>tflite::Interpreter:kTensorsCapacityHeadroom</code> are now const references, rather than constexpr compile-time constants. (This is to enable better API compatibility for TFLite in Play services while preserving the implementation flexibility to change the values of these constants in the future.)
+
+<h3><span style="font-size: large;">TF-Lite</span></h3>
+
+<p>tfl.Cast op is now supporting bfloat16 in the runtime kernel. <code>tf.lite.Interpreter</code> gives a deprecation warning redirecting to its new location at <code>ai_edge_litert.interpreter</code>, as the API <code>tf.lite.Interpreter</code> will be deleted in TF 2.20. See the <a href="https://ai.google.dev/edge/litert/migration" target="_blank">migration guide</a> for details.</p>
+
+<h3><span style="font-size: large;">Libtensorflow</span></h3>
+
+<p>We have stopped publishing libtensorflow packages but it can still be unpacked from the PyPI package.</p></div>
+                <a href="https://blog.tensorflow.org/2025/03/whats-new-in-tensorflow-2-19.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Introducing Wake Vision: A High-Quality, Large-Scale Dataset for TinyML Computer Vision Applications</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-12-05T09:00:00.000-08:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/w1200-h630-p-k-no-nu/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" alt="Introducing Wake Vision: A High-Quality, Large-Scale Dataset for TinyML Computer Vision Applications" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO4WDCWDuV4LT0FtXw_qBaJKOFjEkHrFOBQ0z4WZaA6keEQEtFc4ZNwmZTyP2eCPHjN_qIA41VzgJeVCnYT6pTWCic-9gy5hjwknTEqGKfyWrJjtdH20lcxRkI7_N-UEPVgGxvDGvJDeeVm8h4QxVIa2mknX0l2WyG0WAs5Y259erSlTsQpbO8q3umCAI/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-social-v2.png" style="display: none;" />
+
+<em>Posted by Colby Banbury, Emil Njor, Andrea Mattia Garavagno, Vijay Janapa Reddi – Harvard University</em>
+
+<a href=""><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXMzZM-8kD4Hv3XAwSxdZl1k5jAUCzDkfKdog5XWfPE8l-cfcDLmAPxhG8nd_ZbuGeyeulW9LsbSVsSkAQf3i_-DV6o71xrb57ZfVQ6cUClvMB-h1_rXjVIM4FK9V2GCRkWsIofgZ3hdaoJiYjRyzk-Mrf31-FEPJ6C4VhCoAjiCttPP1Sja53g-Tzz9Y/s1600/TensorFlow-Training-model-on-temporal-data-with-TensorFlow-and-Temporian-header-v2.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p><b>TinyML</b> is an exciting frontier in machine learning, enabling models to run on extremely low-power devices such as microcontrollers and edge devices. However, the growth of this field has been stifled by a lack of tailored large and high-quality datasets. That's where <a href="https://wakevision.ai/" target="_blank">Wake Vision</a> comes in—a new dataset designed to accelerate research and development in TinyML.</p>
+
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCy1LV1L66F-joAgx4igQMAX7g6jMDQsgd6vVd3pWLdSS9Cn96ZgP5aNumzwV1n8HP8JEvnjy-ra053wE2yIc0Rxped3pJfXkKt6XExOKqiVpzMoZqosS25KOpEpdiY4Un8lx_4DjdC6UIiTrjB1vIcWkCJv5NQRuKO0BH0E_rWbOhkJ03krsoQPmLNwA/s718/Screenshot%202024-12-02%20at%205.16.08%E2%80%AFPM.png" style="margin-left: 1em; margin-right: 1em;"><img alt="A vibrant, abstract representation of a human figure is formed by swirling lines and dots of rainbow colors. A large, bright blue eye is centrally located on the figure's torso." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCy1LV1L66F-joAgx4igQMAX7g6jMDQsgd6vVd3pWLdSS9Cn96ZgP5aNumzwV1n8HP8JEvnjy-ra053wE2yIc0Rxped3pJfXkKt6XExOKqiVpzMoZqosS25KOpEpdiY4Un8lx_4DjdC6UIiTrjB1vIcWkCJv5NQRuKO0BH0E_rWbOhkJ03krsoQPmLNwA/s16000/Screenshot%202024-12-02%20at%205.16.08%E2%80%AFPM.png" /></a></div>
+
+<h3>Why TinyML Needs Better Data</h3>
+
+<p>The development of TinyML requires compact and efficient models, often only a few hundred kilobytes in size. The applications targeted by standard machine learning datasets, like ImageNet, are not well-suited for these highly constrained models.</p>
+
+<p>Existing datasets for TinyML, like <a href="https://arxiv.org/abs/1906.05721" target="_blank">Visual Wake Words (VWW)</a>, have laid the groundwork for progress in the field. However, their smaller size and inherent limitations pose challenges for training production-grade models. Wake Vision builds upon this foundation by providing a large, diverse, and high-quality dataset specifically tailored for person detection—the cornerstone vision task for TinyML.</p>
+
+
+<h3>What Makes Wake Vision Different?</h3>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIiZ0YZ6zmdEIbuzsJVyRVinjmWXMr4_PJ_hSPnUvORKH0noke506j_GK6wUB4f_Zjk1Uwxnkew_EJMuHReOpB-mXsowZXaWCfz2-avSeiNRMUspvvVGP8uuyUPSmB4VWtdruDPpBTHlGIC8OGkr-U-pikoAt7jPqohj3-TJtGIy1FKR-sDe5ECTGFOIY/s1600/Screenshot%202024-12-02%20at%202.35.59%E2%80%AFPM.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="A table displaying the number of images used for training, validation, and testing different datasets, including Wake Vision, Visual Wake Words, CIFAR-100, and PASCAL VOC 2012. The table shows the total number of images and the number of person images in each dataset split." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIiZ0YZ6zmdEIbuzsJVyRVinjmWXMr4_PJ_hSPnUvORKH0noke506j_GK6wUB4f_Zjk1Uwxnkew_EJMuHReOpB-mXsowZXaWCfz2-avSeiNRMUspvvVGP8uuyUPSmB4VWtdruDPpBTHlGIC8OGkr-U-pikoAt7jPqohj3-TJtGIy1FKR-sDe5ECTGFOIY/s1600/Screenshot%202024-12-02%20at%202.35.59%E2%80%AFPM.png" /></a></div>
+
+
+<p><a href="https://wakevision.ai/" target="_blank">Wake Vision</a> is a new, large-scale dataset with roughly <b>6 million images</b>, almost <b>100 times larger</b> than VWW, the previous state-of-the-art dataset for person detection in TinyML. 
+  The dataset provides two distinct training sets:</p>
+<ul>
+<li><b>Wake Vision (Large):</b> Prioritizes dataset size.</li>
+<li><b>Wake Vision (Quality):</b> Prioritizes label quality.</li>
+</ul>
+
+<p>Wake Vision's comprehensive filtering and labeling process significantly enhances the dataset's quality.</p>
+
+
+<h3>Why Data Quality Matters for TinyML Models</h3>
+
+<p>In traditional overparameterized models, it is widely believed that data quantity matters more than data quality, as an overparameterized model can adapt to errors in the training data. But according to the image below, TinyML tells a different story:</p>
+
+
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"><tbody><tr><td style="text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2yOthWHyZ2ypKziH9FQNwHJK4i3gvE7uqhwyzSANsKmoMRxJRLSJwet9XXdPbDqXTfedaY16N3yYMz0gsdLhCDdpQGl_JcXGmg_F88TAJ8Y9v76avonwwDNUzVCZh3wd3j5bfLVG528kT9kWn2bqq81Wg61kDYcCR4IjLDROo8sTgCkQWfDiBVhzQNj0/s1600/image6.png" style="display: block; margin-left: auto; margin-right: auto; padding: 1em 0px; text-align: center;"><img alt="Five line graphs illustrate the Wake Vision Test Score with varying percentages of training data quality used, comparing models by parameter count (78K, 309K, 1.2M, 4.9M, and 11M) and  error rate (7%, 15%, and 30%)." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2yOthWHyZ2ypKziH9FQNwHJK4i3gvE7uqhwyzSANsKmoMRxJRLSJwet9XXdPbDqXTfedaY16N3yYMz0gsdLhCDdpQGl_JcXGmg_F88TAJ8Y9v76avonwwDNUzVCZh3wd3j5bfLVG528kT9kWn2bqq81Wg61kDYcCR4IjLDROo8sTgCkQWfDiBVhzQNj0/s1600/image6.png" /></a></td></tr></tbody></table>
+
+<p>The figure above shows that <b>high-quality labels</b> (less error) are more beneficial for under-parameterized models than simply having more data. Larger, error-prone datasets can still be valuable when paired with <b>fine-grained techniques</b>.</p>
+
+<p>By providing two versions of the training set, Wake Vision enables researchers to explore the balance between dataset size and quality effectively.</p>
+
+
+<h3>Real-World Testing: Wake Vision's Fine-Grained Benchmarks</h3>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEA0BqcN0Jw-SSy_dp_JNPr84oLJZF0T6ceGofGbCYmYsY7fjeJmk7LZ7JYJM_NOzoojuQbFADoTVc_8XyzAtSl_XB1yNNIOFlLVdE4QJ94WHNOx5tH-_0o7zyj151eUvhR_NAzeqqDf82sC2SNpMUfsfXj3Dnd-Q5Gs_nzGTxRiuR_6bVs6orbMtKEEU/s1600/Screenshot%202024-12-02%20at%202.47.48%E2%80%AFPM.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="Five images are shown, each with text underneath describing the content as Perceived Older Person, Near Person, Bright Image, Perceived Female Person, and Depicted Person." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEA0BqcN0Jw-SSy_dp_JNPr84oLJZF0T6ceGofGbCYmYsY7fjeJmk7LZ7JYJM_NOzoojuQbFADoTVc_8XyzAtSl_XB1yNNIOFlLVdE4QJ94WHNOx5tH-_0o7zyj151eUvhR_NAzeqqDf82sC2SNpMUfsfXj3Dnd-Q5Gs_nzGTxRiuR_6bVs6orbMtKEEU/s1600/Screenshot%202024-12-02%20at%202.47.48%E2%80%AFPM.png" /></a></div>
+
+<p>Unlike many open-source datasets, Wake Vision offers <b>fine-grained benchmarks</b> and detailed tests for real-world applications like those shown in the above figure. These enable the evaluation of model performance in real-world scenarios, such as:</p>
+<ul>
+<li><b>Distance:</b> How well the model detects people at various distances from the camera.</li>
+<li><b>Lighting Conditions:</b> Performance in well-lit vs. poorly-lit environments.</li>
+<li><b>Depictions:</b> Handling of varied representations of people (e.g., drawings, sculptures).</li>
+<li><b>Perceived Gender and Age:</b> Detecting biases across genders and age groups.</li>
+</ul>
+
+<p>These benchmarks give researchers a nuanced understanding of model performance in specific, real-world contexts and help identify potential biases and limitations early in the design phase.</p>
+
+<h3>Key Performance Gains With Wake Vision</h3>
+
+<p>The performance gains achieved using Wake Vision are impressive:</p>
+<ul>
+<li><b>Up to a 6.6% increase in accuracy</b> over the established VWW dataset.</li>
+<li><b>Error rate reduction from 7.8% to 2.2%</b> with manual label validation on evaluation sets.</li>
+<li><b>Robustness across various real-world conditions</b>, from lighting to perceived age and gender.</li>
+</ul>
+
+<p>Furthermore, combining the two Wake Vision training sets, using the larger set for pre-training and the quality set for fine-tuning, yields the best results, highlighting the value of both datasets when used in sophisticated training pipelines.</p>
+
+<h3>Wake Vision Leaderboard: Track and Submit New Top-Performing Models</h3>
+
+<p>The Wake Vision website features a <a href="https://wakevision.ai/#leaderboard" target="_blank">Leaderboard</a>, providing a dedicated platform to assess and compare the performance of models trained on the Wake Vision dataset.</p>
+
+<p>The leaderboard enables a clear and detailed view of how models perform under various conditions, with performance metrics like accuracy, error rates, and robustness across diverse real-world scenarios. It’s an excellent resource for both seasoned researchers and newcomers looking to improve and validate their approaches.</p>
+
+<p>Explore the leaderboard to see the current rankings, learn from high-performing models, and submit your own to contribute to advancing the state of the art in TinyML person detection.</p>
+
+
+<h3>Making Wake Vision Easy to Access</h3>
+
+<p>Wake Vision is available through popular dataset services such as:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/datasets/catalog/wake_vision" target="_blank">TensorFlow Datasets (TFDS)</a></li>
+<li><a href="https://huggingface.co/datasets/Harvard-Edge/Wake-Vision" target="_blank">Hugging Face Datasets</a></li>
+<li><a href="https://edgeai.modelnova.ai/" target="_blank">Edge AI Labs</a></li>
+</ul>
+
+<p>With its <b>permissive license</b> (<a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank">CC-BY 4.0</a>), researchers and practitioners can freely use and adapt Wake Vision for their TinyML projects.</p>
+
+<h2>Get Started with Wake Vision Today!</h2>
+<p>The Wake Vision team has made the <b>dataset, code, and benchmarks</b> publicly available to accelerate TinyML research and enable the development of better, more reliable person detection models for ultra-low-power devices.</p>
+
+<p>To learn more and access the dataset, visit <a href="https://wakevision.ai/" target="_blank">Wake Vision’s website</a>, where you can also check out a leaderboard of top-performing models on the Wake Vision dataset - and see if you can create better performing models!</p></div>
+                <a href="https://blog.tensorflow.org/2024/12/introducing-wake-vision-new-dataset-for-person-detection-in-tinyml.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">MLSysBook.AI: Principles and Practices of Machine Learning Systems Engineering</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-11-19T09:00:00.000-08:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/w1200-h630-p-k-no-nu/social-Practices-of-ML-systems-engineering.png" alt="MLSysBook.AI: Principles and Practices of Machine Learning Systems Engineering" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/s1600/social-Practices-of-ML-systems-engineering.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCrY0ybsygB35ZxLoYErMW4s26SSiF_pHCKXTSO2poVyVL2-zlIr0WC6yugLgtnQzi7m_OlgnzUKEMG50g6tDH_CrClBqDK_Py8BXjHcZxWFprthF6uRcOzI1EaXSRhYl-xpUyTycUA6vXmjWPNWsYjOvCcBxsjbZ3TcsN7kNUW8dfVrEJuGY_gYjqi1Y/s1600/social-Practices-of-ML-systems-engineering.png" style="display: none;" />
+
+<em>Posted by Jason Jabbour, Kai Kleinbard and <a href="http://scholar.harvard.edu/vijay-janapa-reddi/" target="_blank">Vijay Janapa Reddi</a> (Harvard University)</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWzldLNhl1RyM2-V8XdUtlf4P5__oJdAaN9GxyGvic4K8RCtOH8KpixLS-oQF5ZB5zn89d3QX-lX_6rn2eqeCJ-evLJKfo7unJRL8sGFodqswVywDYmc9sRTkf-Bo3ToOgECA7nElSXroZBsNFh_o2chlCuipwlWAwyJ4gLvxiosMQcU-8iRpf5jaUuxk/s1600/header-Practices-of-ML-systems-engineering.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWzldLNhl1RyM2-V8XdUtlf4P5__oJdAaN9GxyGvic4K8RCtOH8KpixLS-oQF5ZB5zn89d3QX-lX_6rn2eqeCJ-evLJKfo7unJRL8sGFodqswVywDYmc9sRTkf-Bo3ToOgECA7nElSXroZBsNFh_o2chlCuipwlWAwyJ4gLvxiosMQcU-8iRpf5jaUuxk/s1600/header-Practices-of-ML-systems-engineering.png" /></a>
+
+<a name="more"></a><p></p>
+
+<h2>Everyone wants to do the modeling work, but no one wants to do the engineering.</h2>
+
+<p><i>If ML developers are like astronauts exploring new frontiers, ML systems engineers are the rocket scientists designing and building the engines that take them there.</i></p>
+
+<h3>Introduction</h3>
+
+<p>"Everyone wants to do modeling, but no one wants to do the engineering," highlights a stark reality in the machine learning (ML) world: the allure of building sophisticated models often overshadows the critical task of engineering them into robust, scalable, and efficient systems.</p>
+  
+<p>The reality is that ML and systems are inextricably linked. Models, no matter how innovative, are computationally demanding and require substantial resources—with the rise of generative AI and increasingly complex models, understanding how ML infrastructure scales becomes even more critical. Ignoring the system's limitations during model development is a recipe for disaster.</p>
+  
+<p>Unfortunately, educational resources on the systems side of machine learning are lacking. There are plenty of textbooks and materials on <a href="https://www.tensorflow.org/resources/learn-ml#books" target="_blank">deep learning theory and concepts</a>. However, we truly need more resources on the infrastructure and systems side of machine learning. Critical questions—such as how to optimize models for specific hardware, deploy them at scale, and ensure system efficiency and reliability—are still not adequately understood by ML practitioners. This lack of understanding is not due to disinterest but rather a gap in available knowledge.</p> 
+  
+<p>One significant resource addressing this gap is <a href="http://MLSysBook.ai" target="_blank">MLSysBook.ai</a>. This blog post explores key ML systems engineering concepts from MLSysBook.ai and maps them to the TensorFlow ecosystem to provide practical insights for building efficient ML systems.</p> 
+
+
+<h3>The Connection Between Machine Learning and Systems</h3>
+
+<p>Many think machine learning is solely about extracting patterns and insights from data. While this is fundamental, it’s only part of the story. Training and deploying these "deep" neural network models often necessitates vast computational resources, from powerful GPUs and TPUs to massive datasets and distributed computing clusters.</p> 
+
+<p>Consider the recent wave of large language models (LLMs) that have pushed the boundaries of natural language processing. These models highlight the immense computational challenges in training and deploying large-scale machine learning models. Without carefully considering the underlying system, training times can stretch from days to weeks, inference can become sluggish, and deployment costs can skyrocket.</p> 
+
+<p>Building a successful machine-learning solution involves the entire system, not just the model. This is where ML systems engineering takes the reins, allowing you to optimize model architecture, hardware selection, and deployment strategies, ensuring that your models are not only powerful in theory but also efficient and scalable.</p> 
+
+<p>To draw an analogy, if developing algorithms is like being an astronaut exploring the vast unknown of space, then ML systems engineering is similar to the work of rocket scientists building the engines that make those journeys possible. Without the precise engineering of rocket scientists, even the most adventurous astronauts would remain earthbound.</p> 
+
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsH_zM77JldWBIbYLEZWoocfBzqhBA0iul9s9ZUHsAYmSYoUIEN6aWoUFe3woWvHLgFRNsUiUkKGWcYS4nDjBqiMI3o-DMgIxmLIH-wURGkvfwox5NF5oDtczINYqcisbOUJhUDGuw2KtZAly-wiMS7_nHLy2FkJCtTXyT3hcmPExZnxk1Hgz6vwwvaYs/s1600/MLSysbook-AI-cover-image.png" style="display: block; padding: 1em 0px; text-align: center;"><img alt="An abstract circular design resembling a network or neural pathways consisting of interconnected nodes and lines in shades of blue, pink, and gray, against a white background" border="0" height="640" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsH_zM77JldWBIbYLEZWoocfBzqhBA0iul9s9ZUHsAYmSYoUIEN6aWoUFe3woWvHLgFRNsUiUkKGWcYS4nDjBqiMI3o-DMgIxmLIH-wURGkvfwox5NF5oDtczINYqcisbOUJhUDGuw2KtZAly-wiMS7_nHLy2FkJCtTXyT3hcmPExZnxk1Hgz6vwwvaYs/s1600/MLSysbook-AI-cover-image.png" width="100%" /></a></div>
+
+
+
+<h3>Bridging the Gap: MLSysBook.ai and System-Level Thinking</h3>
+
+<p>One important new resource this blog post offers for insights into ML systems engineering is an open-source "textbook" — <a href="http://MLSysBook.ai" target="_blank">MLSysBook.ai</a> —developed initially as part of Harvard University's <a href="https://sites.google.com/g.harvard.edu/cs249-tinyml-2023" target="_blank">CS249r Tiny Machine Learning</a> course and <a href="https://www.edx.org/certificates/professional-certificate/harvardx-tiny-machine-learning" target="_blank">HarvardX's TinyML</a> online series. This project, which has expanded into an open, collaborative initiative, dives deep into the end-to-end ML lifecycle.</p>
+  
+<p>It highlights that the principles governing ML systems, whether designed for tiny embedded devices or large data centers, are fundamentally similar. For instance, while tiny machines might employ INT8 for numeric operations to save resources, larger systems often utilize FP16 for higher precision—the fundamental concepts, such as quantization, span across both scenarios.</p>
+
+<p>Key concepts covered in this resource include:</p>
+
+<ul><ol>
+<li><b>Data Engineering:</b> Setting the foundation by efficiently collecting, preprocessing, and managing data to prepare it for the machine learning pipeline.</li>
+<li><b>Model Development:</b> Crafting and refining machine learning models to meet specific tasks and performance goals.</li>
+<li><b>Optimization:</b> Fine-tuning model performance and efficiency, ensuring effective use of hardware and resources within the system.</li>
+<li><b>Deployment:</b> Transitioning models from development to real-world production environments while scaling and adapting them to existing infrastructure.</li>
+<li><b>Monitoring and Maintenance:</b> Continuously tracking system health and performance to maintain reliability, address issues, and adapt to evolving data and requirements.</li>
+</ol></ul>
+
+<p>In an efficient ML system, data engineering lays the groundwork by preparing and organizing raw data, which is essential for any machine learning process. This ensures data can be transformed into actionable insights during model development, where machine learning models are created and refined for specific tasks. Following development, optimization becomes critical for enhancing model performance and efficiency, ensuring that models are tuned to run effectively on the designated hardware and within the system's constraints.</p>
+
+<p>The seamless integration of these steps then extends into the deployment phase, where models are brought into real-world production environments. Here, they must be scaled and adapted to function effectively within existing infrastructure, highlighting the importance of robust ML systems engineering. However, the lifecycle of an ML system continues after deployment; continuous monitoring and maintenance are vital. This ongoing process ensures that ML systems remain healthy, reliable and perform optimally over time, adapting to new data and requirements as they arise.</p>
+
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"><tbody><tr><td style="text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikJkY7JpFbxDQ_j0CRSad_aP9CJHu9a9NxEq6eVK50_tcdJLum-gBeWKd1bUTVf8e9yk6zsIgleXvX8j2nQBcY7WVrWe7cutfuiRHAh3fODXrv-j4ye-FnGkGs5SQqZyojTbhQtNqkyKHwkksLVtgh-Mspfzj1PSqN71ULNhdiQ_qXj_F4rpVzHvqtFQA/s1600/image1.png" style="display: block; margin-left: auto; margin-right: auto; padding: 1em 0px; text-align: center;"><img alt="A flowchart diagrams the dependencies between different machine learning concepts, tools, and systems.  Beige boxes represent concepts like 'Data Engineering' and tools like 'TensorFlow Data', while blue boxes indicate higher-level systems like 'ML Systems Engineering Principles' and 'Efficient ML Systems'.  Arrows and dotted lines illustrate the relationships and workflow between these elements." border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikJkY7JpFbxDQ_j0CRSad_aP9CJHu9a9NxEq6eVK50_tcdJLum-gBeWKd1bUTVf8e9yk6zsIgleXvX8j2nQBcY7WVrWe7cutfuiRHAh3fODXrv-j4ye-FnGkGs5SQqZyojTbhQtNqkyKHwkksLVtgh-Mspfzj1PSqN71ULNhdiQ_qXj_F4rpVzHvqtFQA/s1600/image1.png" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="text-align: start;"><i>A mapping of MLSysBook.AI's core ML systems engineering concepts to the TensorFlow ecosystem, illustrating how specific TensorFlow tools support each stage of the machine learning lifecycle, ultimately contributing to the creation of efficient ML systems.</i></span></td></tr></tbody></table>
+
+<h3>SocratiQ: An Interactive AI-Powered Generative Learning Assistant</h3>
+
+<p>One of the exciting innovations we’ve integrated into MLSysBook.ai is SocratiQ—an AI-powered learning assistant designed to foster a deeper and more engaging connection with content focused on machine learning systems. By leveraging a Large Language Model (LLM), SocratiQ turns learning into a dynamic, interactive experience that allows students and practitioners to engage with and co-create their educational journey actively.</p>
+
+<p>With SocratiQ, readers transition from passive content consumption to an active, personalized learning experience. Here’s how SocratiQ makes this possible:</p>
+
+
+<ul>
+<li><b>Interactive Quizzes:</b> SocratiQ enhances the learning process by automatically generating quizzes based on the reading content. This feature encourages active reflection and reinforces understanding without disrupting the learning flow. Learners can test their comprehension of complex ML systems concepts.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2kTEI9cc1EC8cT3TZOQOlOjid4Stn6HUw6u_lMJhzlyFjN9uUhEiAF7KgdLt4Kkx-WsrD6h2qD2SXYixq3mhNBHcofRNjirj5YBGkIakL88shHyLDPWF42XXFU6S3pZrY8jSaoA617qSo96w68yc1mfCTdxxpGMX2dmMuR2Aq6TEAIsMtAjVGMlQzzwA/s1600/image1.gif" style="display: block; padding: 1em 0; text-align: center;"><img alt="moving image of an interactive quiz in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2kTEI9cc1EC8cT3TZOQOlOjid4Stn6HUw6u_lMJhzlyFjN9uUhEiAF7KgdLt4Kkx-WsrD6h2qD2SXYixq3mhNBHcofRNjirj5YBGkIakL88shHyLDPWF42XXFU6S3pZrY8jSaoA617qSo96w68yc1mfCTdxxpGMX2dmMuR2Aq6TEAIsMtAjVGMlQzzwA/s1600/image1.gif" /></a></div>
+  
+<li><b>Adaptive, In-Content Learning:</b> SocratiQ offers real-time conversations with the LLM without pulling learners away from the content they're engaging with. Acting as a personalized Teaching Assistant (TA), it provides tailored explanations.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUay_zDBbYIRqjdZURADOmGhOddBRBVCFpavhrLd58U_DPVO6svaHDWdZt1v79OBztkIGX8YX5HUsIwsTZH7GdW41UvB2tBN9pFh_F7ndV3GRypiXSFdur-Urzbk7ADgGnMVwpAyGDiChNwX3tHQSlbXxz2QMT1qlt1JFeNdm95_FOHrjo0uRPIK9iD84/s1600/image2.gif" style="display: block; padding: 1em 0; text-align: center;"><img alt="moving image of an real-time conversation with the LLM in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUay_zDBbYIRqjdZURADOmGhOddBRBVCFpavhrLd58U_DPVO6svaHDWdZt1v79OBztkIGX8YX5HUsIwsTZH7GdW41UvB2tBN9pFh_F7ndV3GRypiXSFdur-Urzbk7ADgGnMVwpAyGDiChNwX3tHQSlbXxz2QMT1qlt1JFeNdm95_FOHrjo0uRPIK9iD84/s1600/image2.gif" /></a></div>  
+  
+  
+<li><b>Progress Assessment and Gamification:</b> Learners’ progress is tracked and stored locally in their browser, providing a personalized path to developing skills without privacy concerns. This allows for evolving engagement as the learner progresses through the material.</li>
+  
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhn8OGbgDk-LadioL-JftNCi3Dzc8g0t46yHHiXEOwK07fynDdsdGTbBVfA8DuHtd72ygnpuWw3dk6hQmAbaIFT590IHtTyCZdFzRoNtriU07Ww4p4rV3sFaHcM6bvO2VLphGyDhZ0wLX3Po4VGJ69aXehtbaJWArUxDIqkrQGXftB3CYR2RBzV_lLdJs/s1600/image5.png" style="display: block; padding: 1em 0; text-align: center;"><img alt="A Quiz Performance Dashboard in SocratiQ" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhn8OGbgDk-LadioL-JftNCi3Dzc8g0t46yHHiXEOwK07fynDdsdGTbBVfA8DuHtd72ygnpuWw3dk6hQmAbaIFT590IHtTyCZdFzRoNtriU07Ww4p4rV3sFaHcM6bvO2VLphGyDhZ0wLX3Po4VGJ69aXehtbaJWArUxDIqkrQGXftB3CYR2RBzV_lLdJs/s1600/image5.png" /></a></div>
+  
+</ul>
+
+<p>SocratiQ strives to be a supportive guide that respects the primacy of the content itself. It subtly integrates into the learning flow, stepping in when needed to provide guidance, quizzes, or explanations—then stepping back to let the reader continue undistracted. This design ensures that SocratiQ works harmoniously within the natural reading experience, offering support and personalization while keeping the learner immersed in the content.</p>
+
+<p>We plan to integrate capabilities such as research lookups and case studies. The aim is to create a unique learning environment where readers can study and actively engage with the material. This blend of content and AI-driven assistance transforms MLSysBook.ai into a living educational resource that grows alongside the learner's understanding.</p>
+
+
+<h3>Mapping MLSysBook.ai's Concepts to the TensorFlow Ecosystem</h3>
+
+<p>MLSysBook.AI focuses on the core concepts in ML system engineering while providing strategic tie-ins to the TensorFlow ecosystem. The TensorFlow ecosystem offers a rich environment for realizing many of the principles discussed in MLSysBook.AI. This makes the TensorFlow ecosystem a perfect match for the key ML systems concepts covered in MLSysBook.AI, with each tool supporting a specific stage of the machine learning process:</p>
+
+<ul>
+<li><b><a href="https://www.tensorflow.org/datasets" target="_blank">TensorFlow Data</a> (Data Engineering):</b> Supports efficient data preprocessing and input pipelines.</li>
+<li><b><a href="https://www.tensorflow.org/tutorials" target="_blank">TensorFlow Core</a> (Model Development):</b> Central to model creation and training.</li>
+<li><b><a href="https://www.tensorflow.org/lite" target="_blank">TensorFlow Lite</a> (Optimization):</b> Enables model optimization for various deployment scenarios, especially critical for edge devices.</li>
+<li><b><a href="https://www.tensorflow.org/tfx/guide/serving" target="_blank">TensorFlow Serving</a> (Deployment):</b> Facilitates smooth model deployment in production environments.
+</li>
+<li><b><a href="https://www.tensorflow.org/tfx" target="_blank">TensorFlow Extended</a> (Monitoring and maintenance):</b> Offers comprehensive tools for ongoing system health and performance.</li>
+</ul>
+
+<p>Note that MLSysBook.AI does not explicitly teach or focus on TensorFlow-specific concepts or implementations. The book's primary goal is to explore fundamental ML system engineering principles. The connections drawn in this blog post to the TensorFlow ecosystem are simply intended to illustrate how these core concepts align with tools and practices used by industry practitioners, providing a bridge between theoretical understanding and real-world application.</p>
+
+<h3>Support ML Systems Education: Every Star Counts 🌟</h3>
+
+<p>If you find this blog post valuable and want to improve ML systems engineering education, please consider giving the MLSysBook.ai <a href="https://github.com/harvard-edge/cs249r_book" target="_blank">GitHub repository</a> a star ⭐.</p>
+
+<p>Thanks to our sponsors, each ⭐ added to the MLSysBook.ai GitHub repository translates to donations supporting students and minorities globally by funding their research scholarships, empowering them to drive innovation in machine learning systems research worldwide.</p> 
+
+<p>Every star counts—help us reach the generous funding cap!</p>
+
+
+<h3>Conclusion</h3>
+
+<p>The gap between ML modeling and system engineering is closing, and understanding both aspects is important for creating impactful AI solutions. By embracing ML system engineering principles and leveraging powerful tools like those in the TensorFlow ecosystem, we can go beyond building models to creating complete, optimized, and scalable ML systems.</p>
+
+<p>As AI continues to evolve, the demand for professionals who can bridge the gap between ML algorithms and systems implementation will only grow. Whether you're a seasoned practitioner or just starting your ML journey, investing time in understanding ML systems engineering will undoubtedly pay dividends in your career and the impact of your work. If you’d like to learn more, listen to our MLSysBook.AI <a href="https://notebooklm.google.com/notebook/bae2e128-7926-4ba9-8503-2b54ff3237f9/audio" target="_blank">podcast</a>, generated by Google’s NotebookLM.</p>
+
+<p>Remember, even the most brilliant astronauts need skilled engineers to build their rockets!</p>
+
+<h4>Acknowledgments</h4>
+<p><i>We thank Josh Gordon for his suggestion to write this blog post and for encouraging and sharing ideas on how the book could be a useful resource for the TensorFlow community.</i></p></div>
+                <a href="https://blog.tensorflow.org/2024/11/mlsysbookai-principles-and-practices-of-machine-learning-systems-engineering.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.18</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-10-28T12:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.18" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.18 has been released! Highlights of this release (and 2.17) include NumPy 2.0, LiteRT repository, CUDA Update, Hermetic CUDA and more. For the full release notes, please click <a href="https://github.com/tensorflow/tensorflow/blob/r2.18/RELEASE.md" target="_blank">here</a>.</p>
+
+<p><b>Note:</b> Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2><span style="font-size: x-large;">TensorFlow Core</span></h2>
+
+<span style="font-size: large;"><b>NumPy 2.0</b></span>
+
+<p>The upcoming TensorFlow 2.18 release will include support for <a href="https://numpy.org/doc/stable/release/2.0.0-notes.html" target="_blank">NumPy 2.0</a>. While the majority of TensorFlow APIs will function seamlessly with NumPy 2.0, this may break some edge cases of usage, e.g., out-of-boundary conversion errors and numpy scalar representation errors. You can consult the following <a href="https://github.com/tensorflow/tensorflow/pull/73730" target="_blank">common solutions</a>.</p>
+
+
+<p>Note that NumPy's type promotion rules have been changed (See <a href="https://numpy.org/neps/nep-0050-scalar-promotion.html#nep50" target="_blank">NEP 50</a> for details). This may change the precision at which computations happen, leading either to type errors or to numerical changes to results. Please see <a href="https://numpy.org/devdocs/numpy_2_0_migration_guide.html#numpy-2-migration-guide" target="_blank">the NumPy 2 migration guide</a>.</p>
+
+<p>We've updated some TensorFlow tensor APIs to maintain compatibility with NumPy 2.0 while preserving the out-of-boundary conversion behavior in NumPy 1.x.</p><br />
+
+<span style="font-size: large;"><b>LiteRT Repository</b></span>
+
+<p>We're making some changes to how <a href="https://github.com/google-ai-edge/LiteRT" target="_blank">LiteRT</a> (<a href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/" target="_blank">formerly known as TFLite</a>) is developed. Over the coming months, we'll be gradually transitioning TFLite's codebase to LiteRT. Once the migration is complete, we'll start accepting contributions directly through the LiteRT repository. There will no longer be any binary TFLite releases and developers should switch to LiteRT for the latest updates.</p><br />
+
+<span style="font-size: large;"><b>Hermetic CUDA</b></span>
+
+<p>If you build TensorFlow from source, Bazel will now download specific versions of CUDA, CUDNN and NCCL distributions, and then use those tools as dependencies in various Bazel targets. This enables more reproducible builds for Google ML projects and supported CUDA versions because the build no longer relies on the locally installed versions. More details are provided <a href="https://github.com/openxla/xla/blob/main/docs/hermetic_cuda.md#environment-variables-controlling-the-hermetic-cudacudnn-versions" target="_blank">here</a>.</p><br />
+
+
+<span style="font-size: large;"><b>CUDA Update</b></span>
+
+<p>TensorFlow binary distributions now ship with dedicated CUDA kernels for GPUs with a compute capability of 8.9. This improves the performance on the popular Ada-Generation GPUs like NVIDIA RTX 40**, L4 and L40.</p>
+
+<p>To keep Python wheel sizes in check, we made the decision to no longer ship CUDA kernels for compute capability 5.0. That means the oldest NVIDIA GPU generation supported by the precompiled Python packages is now the Pascal generation (compute capability 6.0). For Maxwell support, we either recommend sticking with TensorFlow version 2.16, or compiling TensorFlow from source. The latter will be possible as long as the used CUDA version still supports Maxwell GPUs.</p></div>
+                <a href="https://blog.tensorflow.org/2024/10/whats-new-in-tensorflow-218.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">What's new in TensorFlow 2.17</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">TensorFlow Blog</span>
+                    <span class="noticia-fecha">2024-07-18T09:00:00.000-07:00</span>
+                </div>
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/w1200-h630-p-k-no-nu/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="What's new in TensorFlow 2.17" class="noticia-imagen">
+                <div class="galeria"><img src="https://www.gstatic.com/tf_blog/images/image_blank.png" alt="Imagen 1" loading="lazy"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" alt="Imagen 2" loading="lazy"></div>
+                <div class="noticia-descripcion"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVyX9h9jqUfN0LpVCwPg0iWNd4XDkKWd5hL7Wn9CwGLBZ5NyrEFTHHXu6yCxCaLL2szdaQMCkDuRdV4-JapbV329DYTjaH6ThpbzJlbvgunZK9dUgii1kAqcs-4zhyphenhyphenccaLsfffj7K3-8HFLybyOeaHjVl_n7jdPmD33o0TERamUgTdH7H3qhBLS2GuwtY/s1600/Tensorflow-septmber-update-social%20%282%29%20%281%29.png" style="display: none;" />
+
+<em>Posted by the TensorFlow team</em>
+
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja7X29KGgTQBVvr3Xl2pyRZ-KQZJOM1-rq5XUr7AKu1vc_umj40H8y3mMoYq3wccQlA9XZ8OPtSx8SFJOOy8uSeX_MpoIAz7x44Cov-P95v9h85TLGgWCW2gqL6x3fbFfL1Xg6gZYkhylQKMQG7_8ilCTsm81bG87vT-3ttwn8IGdCPU1KfVVDjatuofs/s1600/Tensorflow-septmber-update-header%20%284%29.png" /></a>
+
+<a name="more"></a><p></p>
+
+<p>TensorFlow 2.17 has been released! Highlights of this release (and 2.16) include CUDA update, upcoming Numpy 2.0, and more. For the full release notes, please click <a href="https://github.com/tensorflow/tensorflow/blob/r2.17/RELEASE.md" target="_blank">here</a>.</p>
+
+<p>Note: Release updates on the new multi-backend Keras will be published on <a href="http://keras.io" target="_blank">keras.io</a>, starting with Keras 3.0. For more information, please see <a href="https://keras.io/keras_3/" target="_blank">https://keras.io/keras_3/</a>.</p>
+
+<h2>TensorFlow Core</h2>
+
+<h3><span style="font-weight: normal;">CUDA Update</span></h3>
+
+<p>TensorFlow binary distributions now ship with dedicated CUDA kernels for GPUs with a compute capability of 8.9. This improves the performance on the popular Ada-Generation GPUs like NVIDIA RTX 40**, L4 and L40.</p>
+
+<p>To keep Python wheel sizes in check, we made the decision to no longer ship CUDA kernels for compute capability 5.0. That means the oldest NVIDIA GPU generation supported by the precompiled Python packages is now the Pascal generation (compute capability 6.0). For Maxwell support, we either recommend sticking with TensorFlow version 2.16, or compiling TensorFlow from source. The latter will be possible as long as the used CUDA version still supports Maxwell GPUs.</p>
+
+<h3><span style="font-weight: normal;">Numpy 2.0</span></h3>
+
+<p>Upcoming TensorFlow 2.18 release will include support for Numpy 2.0. This may break some edge cases of TensorFlow API usage.</p>
+
+<h3><span style="font-weight: normal;">Drop TensorRT support</span></h3>
+
+<p>Starting with TensorFlow 2.18, support for TensorRT will be dropped. TensorFlow 2.17 will be the last version to include it.</p></div>
+                <a href="https://blog.tensorflow.org/2024/07/whats-new-in-tensorflow-217.html" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="gadgets" class="categoria-seccion">
+            <h2 class="categoria-titulo">Gadgets</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">The Nintendo Switch 2 sure seems to work just fine with a USB mouse</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T17:51:55-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257672_switch_2_OGrove_0016.jpg?quality=90&strip=all&crop=0%2C10.805700988947%2C100%2C78.388598022106&w=1200" alt="The Nintendo Switch 2 sure seems to work just fine with a USB mouse" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">You’ll be able to use a USB mouse with the Nintendo Switch 2 in at least one game, as a Koei Tecmo developer commentary video for the upcoming Nobunaga’s Ambition: Awakening Complete Edition revealed this week. That’s great news if your wrists, like mine, started preemptively cramping the first time you saw video of someone [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674176/nintendo-switch-2-usb-mouse-support" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">The oldest Fire TV devices are losing Netflix support soon</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T14:27:51-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951360/STK072_VRG_Illo_N_Barclay_8_netflix.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="The oldest Fire TV devices are losing Netflix support soon" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">It’s finally time to upgrade for many owners of the earliest Amazon Fire TV devices, as Netflix is ending support for them next month, reports German outlet Heise. The cutoff for US users is June 3rd, according to ZDNet, which writes that the company has been emailing those who would be affected by the change. [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674165/amazon-1st-generation-fire-tv-devices-losing-netflix-support" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">X is back after an apparent widespread outage</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T11:57:25-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK160_X_TWITTER_2__C.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="X is back after an apparent widespread outage" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">X is back up for most users after what appeared to be a significant outage that spiked early this morning around 9AM ET. Global internet monitor NetBlocks posted this morning that X “has been experiencing international outages for some users for a second time in a week,” adding that the issue isn’t “related to country-level [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674129/x-is-down-after-data-center-fire" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Whoop is reportedly replacing defective MG trackers</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T11:43:54-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Whoop-bands.png?quality=90&strip=all&crop=0%2C10.742998834307%2C100%2C78.514002331385&w=1200" alt="Whoop is reportedly replacing defective MG trackers" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">Users of Whoop’s fitness trackers have been reporting that their Whoop MG fitness trackers are turning unresponsive, in some cases within under an hour of setting them up. Now, the company is apparently replacing the trackers, in some cases before the users even ask, TechIssuesToday reports. Launched alongside the Whoop 5.0 earlier this month, the [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674144/whoop-mg-bug-replacements" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Twelve South’s slick 3-in-1 charging stand has dropped to a new low price</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T10:31:50-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/vergetravelsouthhirise3deluxe-1-2.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="Twelve South’s slick 3-in-1 charging stand has dropped to a new low price" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">Memorial Day marks the unofficial start of summer, and if you somehow managed to skip your spring cleaning earlier this year, the turning of the season offers a fresh chance to declutter your space. Thankfully, the Twelve South HiRise 3 Deluxe offers a stylish way to organize your desk or bedside table, and it’s currently [&#8230;]</div>
+                <a href="https://www.theverge.com/tech/673960/sony-ult-field-3-speaker-twelve-south-hirise-3-deluxe-charger-deal-sale" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+        <section id="empleos" class="categoria-seccion">
+            <h2 class="categoria-titulo">Empleos</h2>
+            <div class="noticias-container">
+                
+            <article class="noticia">
+                <h3 class="noticia-titulo">The Nintendo Switch 2 sure seems to work just fine with a USB mouse</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T17:51:55-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257672_switch_2_OGrove_0016.jpg?quality=90&strip=all&crop=0%2C10.805700988947%2C100%2C78.388598022106&w=1200" alt="The Nintendo Switch 2 sure seems to work just fine with a USB mouse" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">You’ll be able to use a USB mouse with the Nintendo Switch 2 in at least one game, as a Koei Tecmo developer commentary video for the upcoming Nobunaga’s Ambition: Awakening Complete Edition revealed this week. That’s great news if your wrists, like mine, started preemptively cramping the first time you saw video of someone [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674176/nintendo-switch-2-usb-mouse-support" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">The oldest Fire TV devices are losing Netflix support soon</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T14:27:51-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951360/STK072_VRG_Illo_N_Barclay_8_netflix.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="The oldest Fire TV devices are losing Netflix support soon" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">It’s finally time to upgrade for many owners of the earliest Amazon Fire TV devices, as Netflix is ending support for them next month, reports German outlet Heise. The cutoff for US users is June 3rd, according to ZDNet, which writes that the company has been emailing those who would be affected by the change. [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674165/amazon-1st-generation-fire-tv-devices-losing-netflix-support" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">X is back after an apparent widespread outage</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T11:57:25-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK160_X_TWITTER_2__C.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="X is back after an apparent widespread outage" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">X is back up for most users after what appeared to be a significant outage that spiked early this morning around 9AM ET. Global internet monitor NetBlocks posted this morning that X “has been experiencing international outages for some users for a second time in a week,” adding that the issue isn’t “related to country-level [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674129/x-is-down-after-data-center-fire" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Whoop is reportedly replacing defective MG trackers</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T11:43:54-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Whoop-bands.png?quality=90&strip=all&crop=0%2C10.742998834307%2C100%2C78.514002331385&w=1200" alt="Whoop is reportedly replacing defective MG trackers" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">Users of Whoop’s fitness trackers have been reporting that their Whoop MG fitness trackers are turning unresponsive, in some cases within under an hour of setting them up. Now, the company is apparently replacing the trackers, in some cases before the users even ask, TechIssuesToday reports. Launched alongside the Whoop 5.0 earlier this month, the [&#8230;]</div>
+                <a href="https://www.theverge.com/news/674144/whoop-mg-bug-replacements" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            <article class="noticia">
+                <h3 class="noticia-titulo">Twelve South’s slick 3-in-1 charging stand has dropped to a new low price</h3>
+                <div class="noticia-meta">
+                    <span class="noticia-fuente">The Verge</span>
+                    <span class="noticia-fecha">2025-05-24T10:31:50-04:00</span>
+                </div>
+                <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/vergetravelsouthhirise3deluxe-1-2.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200" alt="Twelve South’s slick 3-in-1 charging stand has dropped to a new low price" class="noticia-imagen">
+                
+                <div class="noticia-descripcion">Memorial Day marks the unofficial start of summer, and if you somehow managed to skip your spring cleaning earlier this year, the turning of the season offers a fresh chance to declutter your space. Thankfully, the Twelve South HiRise 3 Deluxe offers a stylish way to organize your desk or bedside table, and it’s currently [&#8230;]</div>
+                <a href="https://www.theverge.com/tech/673960/sony-ult-field-3-speaker-twelve-south-hirise-3-deluxe-charger-deal-sale" class="noticia-enlace" target="_blank">Leer más</a>
+            </article>
+            
+            </div>
+        </section>
+        
+  </div>
+
+  
+    <div id="modalSuscripcion" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="ocultarModal()">&times;</span>
+        <h2>Suscríbete a nuestras notificaciones</h2>
+        <form onsubmit="suscribirse(event)">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required placeholder="tu@email.com">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="subscribe-btn">Suscribirse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+
+  <footer>
+    <p>© 2025 InfoDiversa - Todas las categorías</p>
+    <p>Actualizado el 24/05/2025 a las 21:13</p>
+  </footer>
+  
+  
+    <script>
+    // Función para buscar noticias
+    function buscarNoticias() {
+      const termino = document.getElementById('busqueda').value.toLowerCase();
+      const noticias = document.querySelectorAll('.noticia');
+      const categorias = document.querySelectorAll('.categoria-seccion');
+      
+      let resultadosEncontrados = false;
+      
+      // Buscar en todas las noticias
+      noticias.forEach(noticia => {
+        const titulo = noticia.querySelector('.noticia-titulo').textContent.toLowerCase();
+        const descripcion = noticia.querySelector('.noticia-descripcion').textContent.toLowerCase();
+        
+        if (titulo.includes(termino) || descripcion.includes(termino)) {
+          noticia.style.display = 'block';
+          resultadosEncontrados = true;
+        } else {
+          noticia.style.display = 'none';
+        }
+      });
+      
+      // Mostrar/ocultar categorías según resultados
+      categorias.forEach(categoria => {
+        const noticiasVisibles = categoria.querySelectorAll('.noticia[style="display: block"]');
+        if (noticiasVisibles.length > 0) {
+          categoria.style.display = 'block';
+        } else {
+          categoria.style.display = 'none';
+        }
+      });
+      
+      // Mostrar mensaje si no hay resultados
+      const mensaje = document.getElementById('mensaje-busqueda');
+      if (!resultadosEncontrados && termino) {
+        mensaje.textContent = `No se encontraron resultados para "${termino}"`;
+        mensaje.style.display = 'block';
+      } else {
+        mensaje.style.display = 'none';
+      }
+    }
+    
+    // Función para limpiar la búsqueda
+    function limpiarBusqueda() {
+      document.getElementById('busqueda').value = '';
+      document.querySelectorAll('.noticia').forEach(n => n.style.display = 'block');
+      document.querySelectorAll('.categoria-seccion').forEach(c => c.style.display = 'block');
+      document.getElementById('mensaje-busqueda').style.display = 'none';
+    }
+    
+    // Función para mostrar el modal de suscripción
+    function mostrarModalSuscripcion() {
+      document.getElementById('modalSuscripcion').style.display = 'block';
+    }
+    
+    // Función para ocultar el modal
+    function ocultarModal() {
+      document.getElementById('modalSuscripcion').style.display = 'none';
+    }
+    
+    // Función para manejar el envío del formulario de suscripción
+    function suscribirse(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      
+      if (!email || !email.includes('@')) {
+        alert('Por favor ingresa un email válido');
+        return;
+      }
+      
+      // Aquí deberías enviar el email al servidor para guardarlo
+      // Por ahora solo mostramos un mensaje
+      alert(`¡Gracias por suscribirte con ${email}! Recibirás notificaciones de nuevas publicaciones.`);
+      ocultarModal();
+    }
+    
+    // Función para recargar la página al hacer clic en el logo
+    function recargarPagina() {
+      location.reload();
+    }
+    
+    // Actualizar la página cada 2 horas
+    setTimeout(function() {
+      location.reload();
+    }, 7200000);
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    window.onclick = function(event) {
+      const modal = document.getElementById('modalSuscripcion');
+      if (event.target == modal) {
+        ocultarModal();
+      }
+    }
+    </script>
+    
+</body>
+</html>
