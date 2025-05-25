@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: pip install feedparser beautifulsoup4 requests yfinance
       - name: Run script
-        run: python tu_script.py
+        run: noticias.py
       - name: Commit changes
         run: |
           git config --global user.name 'GitHub Actions'
